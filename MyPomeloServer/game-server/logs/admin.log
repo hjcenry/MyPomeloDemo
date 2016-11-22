@@ -1,0 +1,1 @@
+[2016-11-22 22:14:55.012] [INFO] admin-log - [32m[/Users/Henry/Documents/project/MyPomeloServer/game-server/node_modules/pomelo/lib/master/master.js] [39m{"action":"execute","moduleId":"__console__","method":"clientHandler","msg":{"signal":"list","clientId":"pomelo_list_1479824094904","username":"admin"}}
