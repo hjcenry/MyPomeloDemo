@@ -1,0 +1,3 @@
+Global = {
+    pomelo: window.pomelo
+}

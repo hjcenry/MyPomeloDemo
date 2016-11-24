@@ -4,3 +4,13 @@
 [2016-11-22 22:14:55.031] [INFO] pomelo-admin - [32m[/Users/Henry/Documents/project/MyPomeloServer/game-server/node_modules/pomelo-admin/lib/masterAgent.js] [39mclient user admin exit
 [2016-11-22 23:22:40.980] [INFO] pomelo-admin - [32m[/Users/Henry/Documents/project/MyPomeloServer/game-server/node_modules/pomelo-admin/lib/consoleService.js] [39mtry to connect master: "master", "127.0.0.1", 3005
 [2016-11-22 23:22:41.378] [INFO] pomelo-admin - [32m[/Users/Henry/Documents/project/MyPomeloServer/game-server/node_modules/pomelo-admin/lib/consoleService.js] [39mtry to connect master: "connector", "127.0.0.1", 3005
+[2016-11-23 15:16:13.783] [INFO] pomelo-admin - [32m[E:\projects\MyPomeloDemo\MyPomeloServer\game-server\node_modules\pomelo-admin\lib\consoleService.js] [39mtry to connect master: "master", "127.0.0.1", 3005
+[2016-11-23 15:16:14.582] [INFO] pomelo-admin - [32m[E:\projects\MyPomeloDemo\MyPomeloServer\game-server\node_modules\pomelo-admin\lib\consoleService.js] [39mtry to connect master: "connector", "127.0.0.1", 3005
+[2016-11-24 18:23:11.537] [INFO] pomelo-admin - [32m[E:\projects\MyPomeloDemo\MyPomeloServer\game-server\node_modules\pomelo-admin\lib\consoleService.js] [39mtry to connect master: "master", "127.0.0.1", 3005
+[2016-11-24 18:23:12.524] [INFO] pomelo-admin - [32m[E:\projects\MyPomeloDemo\MyPomeloServer\game-server\node_modules\pomelo-admin\lib\consoleService.js] [39mtry to connect master: "scene", "127.0.0.1", 3005
+[2016-11-24 18:23:12.592] [ERROR] pomelo-admin - [31m[E:\projects\MyPomeloDemo\MyPomeloServer\game-server\node_modules\pomelo-admin\lib\monitorAgent.js] [39mserver "chat-server-1" "scene" register master failed
+[2016-11-24 18:23:12.596] [INFO] pomelo-admin - [32m[E:\projects\MyPomeloDemo\MyPomeloServer\game-server\node_modules\pomelo-admin\lib\consoleService.js] [39mtry to connect master: "connector", "127.0.0.1", 3005
+[2016-11-24 18:23:12.745] [INFO] pomelo-admin - [32m[E:\projects\MyPomeloDemo\MyPomeloServer\game-server\node_modules\pomelo-admin\lib\consoleService.js] [39mtry to connect master: "gate", "127.0.0.1", 3005
+[2016-11-24 18:23:12.806] [ERROR] pomelo-admin - [31m[E:\projects\MyPomeloDemo\MyPomeloServer\game-server\node_modules\pomelo-admin\lib\monitorAgent.js] [39mserver "gate-server-1" "gate" register master failed
+[2016-11-24 18:23:49.902] [INFO] pomelo-admin - [32m[E:\projects\MyPomeloDemo\MyPomeloServer\game-server\node_modules\pomelo-admin\lib\masterAgent.js] [39mclient user : admin login to master
+[2016-11-24 18:24:49.959] [INFO] pomelo-admin - [32m[E:\projects\MyPomeloDemo\MyPomeloServer\game-server\node_modules\pomelo-admin\lib\masterAgent.js] [39mclient user admin exit
