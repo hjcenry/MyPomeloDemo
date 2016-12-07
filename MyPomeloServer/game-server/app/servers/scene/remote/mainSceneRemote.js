@@ -49,8 +49,8 @@ MainSceneRemote.prototype.add = function (uid, sid, name, flag, cb) {
  */
 MainSceneRemote.prototype.get = function (name, cb) {
     PlayerService.getPlayers(name, function (err, data) {
-        var users = {users: data};
-        utils.invokeCallback(cb, err, users);
+        var users = data;
+        utils.invokeCallback(cb, users);
     })
 };
 

@@ -1,48 +1,39 @@
-var mainSceneRemote = require('../remote/mainSceneRemote');
+var Event = require('../../../const/const').Event;
+var PlayerService = require('../../../service/playerService');
+// var Player = require('../../../entity/player');
+// var utils = require('../../../util/utils');
 
-module.exports = function(app) {
+module.exports = function (app) {
     return new Handler(app);
 };
 
-var Handler = function(app) {
+var Handler = function (app) {
     this.app = app;
 };
 
 var handler = Handler.prototype;
 
 /**
- * Send messages to users
- *
- * @param {Object} msg message from client
- * @param {Object} session
- * @param  {Function} next next stemp callback
- *
+ * 场景中移动
+ * @param msg
+ * @param session
+ * @param next
  */
-handler.send = function(msg, session, next) {
+handler.move = function (msg, session, next) {
     var rid = session.get('rid');
     var username = session.uid.split('*')[0];
     var channelService = this.app.get('channelService');
     var param = {
-        msg: msg.content,
-        from: username,
-        target: msg.target
+        uid: username,
+        moveX: msg.moveX,
+        moveY: msg.moveY
     };
-    channel = channelService.getChannel(rid, false);
-
-    //the target is all users
-    if(msg.target == '*') {
-        channel.pushMessage('onChat', param);
-    }
-    //the target is specific user
-    else {
-        var tuid = msg.target + '*' + rid;
-        var tsid = channel.getMember(tuid)['sid'];
-        channelService.pushMessageByUids('onChat', param, [{
-            uid: tuid,
-            sid: tsid
-        }]);
-    }
-    next(null, {
-        route: msg.route
+    // 玩家执行移动方法
+    PlayerService.getPlayerByName(username, rid, function (err, data) {
+        var player = data;
+        player.move(msg.moveX, msg.moveY);
     });
+    // 同步玩家移动消息
+    var channel = channelService.getChannel(rid, false);
+    channel.pushMessage(Event.move, param, null, next);
 };

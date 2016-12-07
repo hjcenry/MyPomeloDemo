@@ -12,7 +12,7 @@ module.exports = {
     },
 
     Event: {
-        chat: 'onChat'
+        move: 'onMove'
     },
 
     Screen: {
