@@ -98,6 +98,8 @@ var HelloWorldLayer = cc.Layer.extend({
                     // setRoom();
                     // showChat();
                     // initUserList(data);
+                    cc.log(data);
+                    cc.log(data.users);
                     cc.director.runScene(new cc.TransitionFade(2, new MainScene()));
                 });
             });

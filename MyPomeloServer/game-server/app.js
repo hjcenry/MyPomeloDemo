@@ -18,20 +18,27 @@ app.set('name', 'MyPomeloServer');
 // });
 
 // app configuration
-app.configure('production|development', 'connector', function(){
+app.configure('production|development', 'connector', function () {
     app.set('connectorConfig',
         {
-            connector : pomelo.connectors.hybridconnector,
-            heartbeat : 3,
+            connector: pomelo.connectors.hybridconnector,
+            heartbeat: 3,
         });
 });
 
-app.configure('production|development', 'gate', function(){
+app.configure('production|development', 'gate', function () {
     app.set('connectorConfig',
         {
-            connector : pomelo.connectors.hybridconnector,
-            useProtobuf : true
+            connector: pomelo.connectors.hybridconnector,
+            useProtobuf: true
         });
+});
+
+// memcached
+app.configure("production|development", function () {
+    app.loadConfig("memcached", app.getBase() + "/config/memcached.json");
+    var memclient = require("./app/dao/memcached/memcached").init(app);
+    app.set("memclient", memclient);
 });
 
 
@@ -39,5 +46,5 @@ app.configure('production|development', 'gate', function(){
 app.start();
 
 process.on('uncaughtException', function (err) {
-  console.error(' Caught exception: ' + err.stack);
+    console.error(' Caught exception: ' + err.stack);
 });

@@ -1,76 +1,77 @@
-module.exports = function(app) {
+module.exports = function (app) {
     return new MainSceneRemote(app);
 };
 
-var MainSceneRemote = function(app) {
+var PlayerService = require('../../../service/playerService');
+var Player = require('../../../entity/player');
+var utils = require('../../../util/utils');
+
+var MainSceneRemote = function (app) {
     this.app = app;
     this.channelService = app.get('channelService');
 };
 
 /**
- * Add user into chat channel.
- *
- * @param {String} uid unique id for user
- * @param {String} sid server id
- * @param {String} name channel name
- * @param {boolean} flag channel parameter
- *
+ * 添加玩家信息
+ * @param uid
+ * @param sid
+ * @param name
+ * @param flag
+ * @param cb
  */
-MainSceneRemote.prototype.add = function(uid, sid, name, flag, cb) {
+MainSceneRemote.prototype.add = function (uid, sid, name, flag, cb) {
     var channel = this.channelService.getChannel(name, flag);
     var username = uid.split('*')[0];
-    var param = {
-        route: 'onAdd',
-        user: username
-    };
-    channel.pushMessage(param);
-
-    if( !! channel) {
+    // 创建玩家
+    var player = new Player({
+        id: username,
+        rid: name
+    });
+    // 添加玩家信息
+    PlayerService.addPlayer(player, function (err, data) {
+        var param = {
+            route: 'onAdd',
+            user: data
+        };
+        channel.pushMessage(param);
+    });
+    // 添加到channel
+    if (!!channel) {
         channel.add(uid, sid);
     }
-
-    cb(this.get(name, flag));
+    this.get(name, cb);
 };
 
 /**
- * Get user from chat channel.
- *
- * @param {Object} opts parameters for request
- * @param {String} name channel name
- * @param {boolean} flag channel parameter
- * @return {Array} users uids in channel
- *
+ * 获取所有玩家
+ * @param name
+ * @param cb
  */
-MainSceneRemote.prototype.get = function(name, flag) {
-    var users = [];
-    var channel = this.channelService.getChannel(name, flag);
-    if( !! channel) {
-        users = channel.getMembers();
-    }
-    for(var i = 0; i < users.length; i++) {
-        users[i] = users[i].split('*')[0];
-    }
-    return users;
+MainSceneRemote.prototype.get = function (name, cb) {
+    PlayerService.getPlayers(name, function (err, data) {
+        var users = {users: data};
+        utils.invokeCallback(cb, err, users);
+    })
 };
 
 /**
- * Kick user out chat channel.
- *
- * @param {String} uid unique id for user
- * @param {String} sid server id
- * @param {String} name channel name
- *
+ * 踢出玩家
+ * @param uid
+ * @param sid
+ * @param name
  */
-MainSceneRemote.prototype.kick = function(uid, sid, name) {
+MainSceneRemote.prototype.kick = function (uid, sid, name) {
     var channel = this.channelService.getChannel(name, false);
     // leave channel
-    if( !! channel) {
+    if (!!channel) {
         channel.leave(uid, sid);
     }
-    var username = uid.split('*')[0];
-    var param = {
-        route: 'onLeave',
-        user: username
-    };
-    channel.pushMessage(param);
+    PlayerService.deletePlayer(uid, name, function (err, data) {
+        var player = data;
+        var param = {
+            route: 'onLeave',
+            user: player
+        };
+        channel.pushMessage(param);
+    });
 };
