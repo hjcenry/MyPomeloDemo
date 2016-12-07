@@ -57,7 +57,7 @@ PlayerService.addPlayer = function (player, cb) {
         }
         if (!!players) {
             players[player.id] = player;
-            mem.set("players_" + player.rid, players);
+            mem.set(playesKey(player.rid), players);
         }
         utils.invokeCallback(cb);
     });
