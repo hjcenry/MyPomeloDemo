@@ -1,3 +1,5 @@
+var logger = require('pomelo-logger').getLogger(__filename);
+
 module.exports = function (app) {
     return new Handler(app);
 };
@@ -41,6 +43,7 @@ handler.enter = function (msg, session, next) {
     //put user into channel
     self.app.rpc.scene.mainSceneRemote.add(session, uid, self.app.get('serverId'), rid, true, function (users) {
         next(null, {
+            rid: rid,
             users: users
         });
     });
@@ -57,5 +60,15 @@ var onUserLeave = function (app, session) {
     if (!session || !session.uid) {
         return;
     }
-    app.rpc.scene.mainSceneRemote.kick(session, session.uid, app.get('serverId'), session.get('rid'), null);
+    app.rpc.scene.mainSceneRemote.kick(session, {
+            uid: session.uid,
+            sid: app.get('serverId'),
+            rid: session.get('rid')
+        }, function (err) {
+            if (!!err) {
+                logger.error('user leave error! %j', err);
+            }
+        }
+    )
+    ;
 };

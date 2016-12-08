@@ -5,8 +5,6 @@ var PlayerInit = require('../const/const').PlayerInit;
 var logger = require('pomelo-logger').getLogger(__filename);
 var pomelo = require('pomelo');
 
-module.exports = Player;
-
 /**
  * 构造玩家信息
  * @param opts json格式参数
@@ -18,17 +16,20 @@ var Player = function (opts) {
     this.init();
 };
 
+module.exports = Player;
+
 /**
  * 玩家信息初始化
  */
 Player.prototype.init = function () {
+    this.type = EntityType.player;
     this.radius = PlayerInit.initRadius;
     this.speed = PlayerInit.initSpeed;
     this.position = {
         x: Math.random() * 1000,
         y: Math.random() * 1000
     };
-    logger.info("玩家信息初始化:{}", this);
+    logger.info("玩家信息初始化:\r\n", this);
 }
 
 /**

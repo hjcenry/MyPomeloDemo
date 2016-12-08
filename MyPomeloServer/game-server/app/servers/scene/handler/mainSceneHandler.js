@@ -33,7 +33,7 @@ handler.move = function (msg, session, next) {
         var player = data;
         player.move(msg.moveX, msg.moveY);
     });
-    // 同步玩家移动消息
+    // 同步玩家移动消息给房间所有玩家
     var channel = channelService.getChannel(rid, false);
     channel.pushMessage(Event.move, param, null, next);
 };

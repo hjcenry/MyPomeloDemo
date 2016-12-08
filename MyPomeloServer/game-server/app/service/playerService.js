@@ -55,11 +55,10 @@ PlayerService.addPlayer = function (player, cb) {
         if (err != null) {
             utils.invokeCallback(cb, err.message, null);
         }
-        if (!!players) {
-            players[player.id] = player;
-            mem.set(playesKey(player.rid), players);
-        }
-        utils.invokeCallback(cb);
+        players = players == null ? {} : players;
+        players[player.id] = player;
+        mem.set(playesKey(player.rid), players);
+        utils.invokeCallback(cb, null, player);
     });
 }
 
@@ -69,8 +68,9 @@ PlayerService.addPlayer = function (player, cb) {
  * @param cb
  */
 PlayerService.deletePlayer = function (username, rid, cb) {
-    mem.del(playesKey(rid), function (err, result) {
-        var players = result;
+    mem.get(playesKey(rid), function (err, data) {
+        var players = data;
+        var player = players[username];
         if (err != null) {
             utils.invokeCallback(cb, err.message, null);
         }
@@ -78,6 +78,6 @@ PlayerService.deletePlayer = function (username, rid, cb) {
             delete players[username];
             mem.set(playesKey(rid), players);
         }
-        utils.invokeCallback(cb);
+        utils.invokeCallback(cb, null, player);
     });
 }

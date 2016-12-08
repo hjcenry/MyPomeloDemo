@@ -5,6 +5,7 @@ module.exports = function (app) {
 var PlayerService = require('../../../service/playerService');
 var Player = require('../../../entity/player');
 var utils = require('../../../util/utils');
+var logger = require('pomelo-logger').getLogger(__filename);
 
 var MainSceneRemote = function (app) {
     this.app = app;
@@ -33,6 +34,7 @@ MainSceneRemote.prototype.add = function (uid, sid, name, flag, cb) {
             route: 'onAdd',
             user: data
         };
+        logger.info(JSON.stringify(param));
         channel.pushMessage(param);
     });
     // 添加到channel
@@ -50,6 +52,7 @@ MainSceneRemote.prototype.add = function (uid, sid, name, flag, cb) {
 MainSceneRemote.prototype.get = function (name, cb) {
     PlayerService.getPlayers(name, function (err, data) {
         var users = data;
+        logger.info(JSON.stringify(users));
         utils.invokeCallback(cb, users);
     })
 };
@@ -60,18 +63,23 @@ MainSceneRemote.prototype.get = function (name, cb) {
  * @param sid
  * @param name
  */
-MainSceneRemote.prototype.kick = function (uid, sid, name) {
-    var channel = this.channelService.getChannel(name, false);
+MainSceneRemote.prototype.kick = function (args, cb) {
+    var uid = args.uid;
+    var sid = args.sid;
+    var rid = args.rid;
+    var channel = this.channelService.getChannel(rid, false);
     // leave channel
     if (!!channel) {
         channel.leave(uid, sid);
     }
-    PlayerService.deletePlayer(uid, name, function (err, data) {
+    PlayerService.deletePlayer(uid.split("*")[0], rid, function (err, data) {
         var player = data;
         var param = {
             route: 'onLeave',
-            user: player
+            username: player
         };
+        logger.info(JSON.stringify(param));
         channel.pushMessage(param);
+        utils.invokeCallback(cb, err);
     });
 };

@@ -6,9 +6,9 @@ module.exports = {
     },
 
     EntityType: {
-        PLAYER: 'player',
-        SUB_BEAN: 'sub_bean',
-        BEAN: 'bean'
+        player: 'player',
+        sub_bean: 'sub_bean',
+        bean: 'bean'
     },
 
     Event: {
