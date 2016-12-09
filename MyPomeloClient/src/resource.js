@@ -6,7 +6,9 @@ var res = {
     edit_green: "res/green_edit.png",
     edit_yellow: "res/yellow_edit.png",
     edit_orange: "res/orange_edit.png",
-    background: "res/background.png"
+    background: "res/background.png",
+    controller_png: "res/controller.png",
+    controllerBG_png: "res/controllerBG.png"
 };
 
 var g_resources = [];

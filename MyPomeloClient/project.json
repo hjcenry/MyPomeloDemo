@@ -14,9 +14,13 @@
   "jsList": [
     "pomelo-cocos2d-js/dist/pomelo-cocos2d-js.js",
     "src/resource.js",
-    "src/config/net.js",
+    "src/net/net.js",
+    "src/config/const.js",
+    "src/config/userinfo.js",
     "src/global.js",
     "src/app.js",
-    "src/scene/mainScene.js"
+    "src/scene/mainScene.js",
+    "src/entity/controller.js",
+    "src/entity/player.js"
   ]
 }
