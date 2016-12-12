@@ -8,7 +8,8 @@ var res = {
     edit_orange: "res/orange_edit.png",
     background: "res/background.png",
     controller_png: "res/controller.png",
-    controllerBG_png: "res/controllerBG.png"
+    controllerBG_png: "res/controllerBG.png",
+    ball_png: "res/ball.png"
 };
 
 var g_resources = [];

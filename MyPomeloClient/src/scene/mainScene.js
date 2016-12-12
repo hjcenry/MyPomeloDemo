@@ -2,12 +2,11 @@ var MainSceneLayer = cc.Layer.extend({
     sprite: null,
     size: cc.winSize,
     rid: 0,
-    users: {},
     userTags: {},
+    player: {},
     ctor: function (rid, users) {
         this._super();
         this.rid = rid;
-        this.users = users;
         // 背景层
         var bg = new cc.Sprite("res/background.png");
         bg.setScale(Const.Screen.width / bg.width, Const.Screen.width / bg.height);
@@ -23,7 +22,16 @@ var MainSceneLayer = cc.Layer.extend({
             userTags[username] = userTags.length + 1;
             if (username == Userinfo.uid) {
                 this.setUserInfo(users[username]);
+                this.player = this.createPlayer({
+                    id: username,
+                    type: Const.Entity.player,
+                    x: users[username].position.x,
+                    y: users[username].position.y
+                });
+            } else {
+                this.createPlayer({id: username, type: Const.Entity.other});
             }
+            this.addChild(this.player);
         }
         // 虚拟摇杆
         var controller = new Controller(res.controllerBG_png, res.controller_png, 50, TouchType.FOLLOW, DirectionType.ALL, roomLabel);
@@ -46,6 +54,10 @@ var MainSceneLayer = cc.Layer.extend({
     onCallback: function () {
         var angle = this.getChildByTag(101).getAngle();
         cc.log("回调:" + angle);
+    },
+    createPlayer: function (opt) {
+        var player = new Player(opt);
+        return player;
     }
 });
 
