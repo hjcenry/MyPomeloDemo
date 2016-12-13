@@ -4,15 +4,13 @@ var MainSceneLayer = cc.Layer.extend({
     rid: 0,
     userTags: {},
     player: {},
+    bg: null,
     ctor: function (rid, users) {
         this._super();
         this.rid = rid;
         // 背景层
-        var bg = new cc.Sprite("res/background.png");
-        bg.setScale(Const.Screen.width / bg.width, Const.Screen.width / bg.height);
-        this.addChild(bg);
-        bg.x = this.size.width / 2;
-        bg.y = this.size.height / 2;
+        this.bg = new MainBg();
+        this.addChild(this.bg);
         // 房间号
         var roomLabel = new cc.LabelTTF("房间号：" + this.rid, "微软雅黑", 30);
         roomLabel.setPosition(roomLabel.width / 2 + 20, this.size.height - roomLabel.height / 2 - 20);
@@ -24,14 +22,16 @@ var MainSceneLayer = cc.Layer.extend({
                 this.setUserInfo(users[username]);
                 this.player = this.createPlayer({
                     id: username,
-                    type: Const.Entity.player,
-                    x: users[username].position.x,
-                    y: users[username].position.y
+                    type: Const.Entity.player
                 });
             } else {
-                this.createPlayer({id: username, type: Const.Entity.other});
+                this.createPlayer({
+                    id: username,
+                    type: Const.Entity.other
+                });
             }
-            this.addChild(this.player);
+            this.player.setPosition(users[username].position.x, users[username].position.y);
+            this.bg.addChild(this.player);
         }
         // 虚拟摇杆
         var controller = new Controller(res.controllerBG_png, res.controller_png, 50, TouchType.FOLLOW, DirectionType.ALL, roomLabel);
