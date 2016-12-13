@@ -7,5 +7,7 @@ var Route = {
 }
 
 var Event = {
-    move: 'onMove'
+    move: 'onMove',
+    enter: 'onEnter',
+    leave: 'onLeave'
 }

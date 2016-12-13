@@ -28,11 +28,16 @@ var Player = cc.Sprite.extend({
         this.speed = Const.Screen.width / 10 * speed / (Const.Screen.width / 10);
     },
     setAngle: function (angle) {
+        // 计算角度
         this.angle = angle;
     },
     setBgPosition: function (x, y) {
-        this.position.x = (-1) * (Const.Screen.width / 2 - cc.winSize.width / 2);
-        this.position.y = (-1) * (Const.Screen.height / 2 - cc.winSize.height / 2);
+        // 计算坐标
+        this.position.x = this.type == Entity.player ? (-1) * (x - cc.winSize.width / 2) : cc.winSize.width / 2;
+        this.position.y = this.type == Entity.player ? (-1) * (y - cc.winSize.height / 2) : cc.winSize.height / 2;
+        // if(this.type == Entity.player){
+        //     this.parent.getChildByTag();
+        // }
     },
     update: function (dt) {
         var moveX = Math.cos(this.angle * (Math.PI / 180)) * this.speed;

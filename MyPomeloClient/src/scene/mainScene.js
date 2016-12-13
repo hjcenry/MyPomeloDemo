@@ -17,7 +17,7 @@ var MainSceneLayer = cc.Layer.extend({
         this.addChild(roomLabel);
         // 玩家
         for (var username in users) {
-            userTags[username] = userTags.length + 1;
+            this.userTags[username] = this.createTag();
             if (username == Userinfo.uid) {
                 this.setUserInfo(users[username]);
                 this.player = this.createPlayer({
@@ -30,7 +30,7 @@ var MainSceneLayer = cc.Layer.extend({
                     type: Const.Entity.other
                 });
             }
-            this.player.setPosition(users[username].position.x, users[username].position.y);
+            this.player.setBgPosition(users[username].position.x, users[username].position.y);
             this.bg.addChild(this.player);
         }
         // 虚拟摇杆
@@ -42,7 +42,41 @@ var MainSceneLayer = cc.Layer.extend({
         //controller.setEnable(true);
         controller.callback = this.onCallback.bind(this);
         this.addChild(controller, 0, 101);
+        pomelo.on(Event.move, this.onUserMove);
+        pomelo.on(Event.enter, this.onUserEnter);
+        pomelo.on(Event.leave, this.onUserLeave);
         return true;
+    },
+    onUserMove: function (data) {
+        // 其他玩家的移动方法
+        var userTag = this.userTags[data.uid];
+        var user = this.getChildByTag(userTag);
+        user.setPosition(data.x, data.y);
+    },
+    onUserEnter: function (data) {
+        // 其他玩家进入的方法
+        this.createPlayer({
+            id: data.uid,
+            radius: data.radius,
+            type: Const.Entity.other
+        });
+        this.player.setBgPosition(data.x, data.y);
+        this.bg.addChild(this.player);
+    },
+    onUserLeave: function (data) {
+        // 其他玩家离开的方法
+        this.getChildByTag(this.userTags[data.uid]).removeFromParent();
+        delete this.userTags[data.uid];
+    },
+    createTag: function () {
+        var tags = [];
+        if (this.userTags.length == 0) {
+            return 1;
+        }
+        for (var username in this.userTags) {
+            tags.push(this.userTags[username]);
+        }
+        return Math.max.apply(null, tags) + 1;
     },
     setUserInfo: function (player) {
         // 设置用户信息

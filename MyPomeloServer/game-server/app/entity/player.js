@@ -27,8 +27,8 @@ Player.prototype.init = function () {
     this.radius = PlayerInit.initRadius;
     this.speed = PlayerInit.initSpeed;
     this.position = {
-        x: Math.random() * 1000,
-        y: Math.random() * 1000
+        x: Math.random() * 1000 - PlayerInit.initRadius,
+        y: Math.random() * 1000 - PlayerInit.initRadius
     };
     logger.info("玩家信息初始化:\r\n", this);
 }

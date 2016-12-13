@@ -12,7 +12,9 @@ module.exports = {
     },
 
     Event: {
-        move: 'onMove'
+        move: 'onMove',
+        enter: 'onEnter',
+        leave: 'onLeave'
     },
 
     Screen: {
