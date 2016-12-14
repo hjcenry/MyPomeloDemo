@@ -6,7 +6,7 @@ var PlayerService = require('../../../service/playerService');
 var Player = require('../../../entity/player');
 var utils = require('../../../util/utils');
 var logger = require('pomelo-logger').getLogger(__filename);
-var Event = require('../../../const/const').EntityType;
+var Event = require('../../../const/const').Event;
 
 var MainSceneRemote = function (app) {
     this.app = app;
@@ -30,26 +30,21 @@ MainSceneRemote.prototype.add = function (uid, sid, name, flag, cb) {
         rid: name
     });
     // 添加玩家信息
+    var self = this;
     PlayerService.addPlayer(player, function (err, data) {
-        var param = {
-            route: Event.enter,
-            user: data
-        };
-        logger.info(JSON.stringify(param));
-        // channel.pushMessage(param);
+        // 添加到channel
+        if (!!channel) {
+            channel.add(uid, sid);
+        }
+        self.get(name, cb);
         channel.pushMessage(Event.enter, {
             uid: data.id,
             radius: data.radius,
             x: data.position.x,
             y: data.position.y
-        }, null, null);
+        });
     });
-    // 添加到channel
-    if (!!channel) {
-        channel.add(uid, sid);
-    }
-    this.get(name, cb);
-};
+}
 
 /**
  * 获取所有玩家
@@ -80,16 +75,9 @@ MainSceneRemote.prototype.kick = function (args, cb) {
         channel.leave(uid, sid);
     }
     PlayerService.deletePlayer(uid.split("*")[0], rid, function (err, data) {
-        var player = data;
-        var param = {
-            route: 'onLeave',
-            username: player
-        };
-        logger.info(JSON.stringify(param));
-        // channel.pushMessage(param);
         channel.pushMessage(Event.leave, {
             uid: data.id
-        }, null, null);
+        });
         utils.invokeCallback(cb, err);
     });
 };
