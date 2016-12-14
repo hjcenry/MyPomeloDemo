@@ -12,12 +12,8 @@ var Player = cc.Sprite.extend({
         this.type = opt.type;
         this.radius = !!opt.radius ? opt.radius : this.radius;
         this.speed = !!opt.speed ? opt.speed : this.speed;
-        return true;
-    },
-    onEnter: function () {
-        this._super();
         this.setTexture(res.ball_png);
-        this.setScale(radius * 2 / this.width, radius * 2 / this.height);
+        this.setScale(this.radius * 2 / this.width, this.radius * 2 / this.height);
         if (this.type == Const.Entity.player) {
             this.scheduleUpdate();
         }
@@ -32,56 +28,73 @@ var Player = cc.Sprite.extend({
         this.angle = angle;
     },
     setBgPosition: function (x, y) {
-        // 计算坐标
-        this.position.x = this.type == Entity.player ? (-1) * (x - cc.winSize.width / 2) : cc.winSize.width / 2;
-        this.position.y = this.type == Entity.player ? (-1) * (y - cc.winSize.height / 2) : cc.winSize.height / 2;
-        // if(this.type == Entity.player){
-        //     this.parent.getChildByTag();
-        // }
+        cc.log("player x:", x, ",", y, "y:");
+        // 小球坐标
+        this.x = x;
+        this.y = y;
+        cc.log("player this x:", this.x, ",", this.y, "y:");
+        // 背景图坐标
+        this.bg.x = (-1) * (this.x - cc.winSize.width / 2);
+        this.bg.y = (-1) * (this.y - cc.winSize.height / 2);
+        // 超出左边界
+        this.bg.x = (this.x < cc.winSize.width / 2) ? 0 : this.bg.x;
+        // 超出右边界
+        this.bg.x = (this.x > Const.Screen.width - cc.winSize.width / 2) ? (-1) * (Const.Screen.width - cc.winSize.width) : this.bg.x;
+        // 超出下边界
+        this.bg.y = (this.y < cc.winSize.height / 2) ? 0 : this.bg.y;
+        // 超出上边界
+        this.bg.y = (this.y > Const.Screen.height - cc.winSize.height / 2) ? (-1) * (Const.Screen.height - cc.winSize.height) : this.bg.y;
+    },
+    setBg: function (bg) {
+        this.bg = bg;
     },
     update: function (dt) {
         var moveX = Math.cos(this.angle * (Math.PI / 180)) * this.speed;
         var moveY = Math.sin(this.angle * (Math.PI / 180)) * this.speed;
         // 背景层反方向移动
-        var startX = this.bg.x;
-        var startY = this.bg.y;
         this.bg.x += (-1) * moveX;
         this.bg.y += (-1) * moveY;
+        var startX = this.bg.x;
+        var startY = this.bg.y;
+        var calMoveX = this.bg.x + (-1) * moveX;
+        var calMoveY = this.bg.y + (-1) * moveY;
         // 背景层左边界判断
-        this.bg.x = (this.bg.x >= Const.Screen.width / 2) ? Const.Screen.width / 2 : this.bg.x;
+        calMoveX = (calMoveX >= Const.Screen.width / 2) ? Const.Screen.width / 2 : calMoveX;
         // 背景层右边界判断
-        this.bg.x = (Math.abs(this.bg.x) + cc.winSize.width >= Const.Screen.width / 2) ? (-1) * (Const.Screen.width / 2 - cc.winSize.width) : this.bg.x;
+        calMoveX = (Math.abs(calMoveX) + cc.winSize.width >= Const.Screen.width / 2) ? (-1) * (Const.Screen.width / 2 - cc.winSize.width) : calMoveX;
         // 背景层上边界判断
-        this.bg.y = (Math.abs(this.bg.y) + cc.winSize.height >= Const.Screen.height / 2) ? (-1) * (Const.Screen.height / 2 - cc.winSize.height) : this.bg.y;
+        calMoveY = (Math.abs(calMoveY) + cc.winSize.height >= Const.Screen.height / 2) ? (-1) * (Const.Screen.height / 2 - cc.winSize.height) : calMoveY;
         // 背景层下边界判断
-        this.bg.y = (this.bg.getPositionY() + (-1) * moveY >= Const.Screen.height / 2) ? Const.Screen.height : this.bg.y;
-        if (startX != this.bg.x && (this.x < cc.winSize.width / 2 || this.x > cc.winSize.width / 2)) {
-            this.bg.x + moveX;// 背景层归位
+        calMoveY = (calMoveY >= Const.Screen.height / 2) ? Const.Screen.height : calMoveY;
+        // x移动判断
+        if (this.bg.x == calMoveX || (this.bg.x != calMoveX && (this.x < cc.winSize.width / 2 || this.x > cc.winSize.width / 2))) {
+            // 背景图不通过边界判断或背景图通过边界判断且小球不在屏幕中心
             this.x += moveX;// 移动小球
             this.x = this.x - this.radius < 0 ? this.radiu : this.x;
             this.x = this.x + this.radius > cc.winSize.width ? cc.winSize.width - this.radius : this.x;
-        } else if (startX == this.bg.x) {
-            this.x += moveX;// 移动小球
-            this.x = this.x - this.radius < 0 ? this.radiu : this.x;
-            this.x = this.x + this.radius > cc.winSize.width ? cc.winSize.width - this.radius : this.x;
+        } else if ((this.bg.x != calMoveX) && (this.x < cc.winSize.width / 2 || this.x > cc.winSize.width / 2)) {
+            // 背景图通过边界判断且小球位于屏幕中心
+            this.bg.x = calMoveX;
         }
-        if (startY != this.bg.y && (this.y < cc.winSize.height / 2 || this.y > cc.winSize.height / 2)) {
-            this.bg.y + moveY;// 背景层归位
-            this.y += moveY;// 移动小球
-            this.y = this.y - this.radius < 0 ? this.radiu : this.y;
-        } else if (startY == this.bg.y) {
+        // y移动判断
+        if (this.bg.y == calMoveY || (this.bg.y != calMoveY && (this.y < cc.winSize.height / 2 || this.y > cc.winSize.height / 2))) {
+            // 背景图不通过边界判断或背景图通过边界判断且小球不在屏幕中心
             this.y += moveY;// 移动小球
             this.y = this.y - this.radius < 0 ? this.radiu : this.y;
             this.y = this.y + this.radius > cc.winSize.height ? cc.winSize.height - this.radius : this.y;
+        } else if ((this.bg.y != calMoveY) && (this.y < cc.winSize.height / 2 || this.y > cc.winSize.height / 2)) {
+            // 背景图通过边界判断且小球位于屏幕中心
+            this.bg.y = calMoveY;
         }
-        // 通知服务端移动操作
-        this.pomelo.notify(Route.move, {angle: this.angle, speed: this.speed}, function (err) {
-            if (!!err) {
-                cc.log("move update err:" + err)
-            }
-        });
-    }
-    ,
+        if (startX != this.bg.x || startY != this.bg.y) {
+            // 通知服务端移动操作
+            this.pomelo.notify(Route.move, {angle: this.angle, speed: this.speed}, function (err) {
+                if (!!err) {
+                    cc.log("move update err:" + err)
+                }
+            });
+        }
+    },
     onMove: function (x, y) {
         this.setPosition(x, y);
     }

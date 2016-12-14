@@ -67,6 +67,8 @@ var HelloWorldLayer = cc.Layer.extend({
         return true;
     },
     showError: function (errText, x, y) {
+        x = arguments.length == 1 ? 0 : x;
+        y = arguments.length == 1 ? 0 : y;
         var alertLabel = new cc.LabelTTF(errText);
         alertLabel.setPosition(x, y);
         this.addChild(alertLabel);
@@ -79,6 +81,7 @@ var HelloWorldLayer = cc.Layer.extend({
         cc.log("enter main scene username:" + userName + ",room " + room + "");
         // 请求pomelo服务器
         //query entry of connection
+        var self = this;
         this.queryEntry(userName, function (host, port) {
             pomelo.init({
                 host: host,
@@ -91,7 +94,7 @@ var HelloWorldLayer = cc.Layer.extend({
                     rid: room
                 }, function (data) {
                     if (data.error) {
-                        this.showError(data.error);
+                        self.showError(data.error);
                         return;
                     }
                     Userinfo.uid = userName;

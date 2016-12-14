@@ -6,9 +6,12 @@ var res = {
     edit_green: "res/green_edit.png",
     edit_yellow: "res/yellow_edit.png",
     edit_orange: "res/orange_edit.png",
-    background: "res/background.png",
+    background: "res/background.jpg",
     controller_png: "res/controller.png",
     controllerBG_png: "res/controllerBG.png",
+    ball1_png: "res/ball1.png",
+    ball2_png: "res/ball2.png",
+    ball3_png: "res/ball3.png",
     ball_png: "res/ball.png"
 };
 

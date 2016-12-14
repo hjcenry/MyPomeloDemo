@@ -21,7 +21,6 @@
     "src/app.js",
     "src/scene/mainScene.js",
     "src/entity/controller.js",
-    "src/entity/mainBg.js",
-    "src/entity/player.js",
+    "src/entity/player.js"
   ]
 }

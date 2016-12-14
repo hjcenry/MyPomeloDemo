@@ -3,7 +3,7 @@ var NetConfig = {
     gatePort: 3014
 }
 var Route = {
-    move: "scene.mainSceneHandle.move"
+    move: "scene.mainSceneHandler.move"
 }
 
 var Event = {
