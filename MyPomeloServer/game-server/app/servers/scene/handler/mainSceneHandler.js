@@ -2,7 +2,7 @@ var Event = require('../../../const/const').Event;
 var PlayerService = require('../../../service/playerService');
 var logger = require('pomelo-logger').getLogger(__filename);
 // var Player = require('../../../entity/player');
-// var utils = require('../../../util/utils');
+var utils = require('../../../util/utils');
 
 module.exports = function (app) {
     return new Handler(app);
@@ -37,4 +37,5 @@ handler.move = function (msg, session, next) {
     //     });
     // });
     logger.info("move...");
+    utils.invokeCallback(next);
 };
