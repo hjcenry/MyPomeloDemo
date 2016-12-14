@@ -12,13 +12,13 @@ var MainSceneLayer = cc.Layer.extend({
         cc.log("users:", users);
         this.rid = rid;
         // 背景层
-        this.bg = new cc.LayerColor(new cc.color(100, 100, 100, 255), Const.Screen.width, Const.Screen.height);
+        this.bg = new cc.Layer();
         // 背景图片
         var bgImg = new cc.Sprite(res.background);
         bgImg.setAnchorPoint(0, 0);
-        bgImg.setScale(Const.Screen.width / this.width, Const.Screen.width / this.height);
+        bgImg.setScale(Const.Screen.width / this.width, Const.Screen.height / this.height);
         this.bg.addChild(bgImg, 1);
-        this.addChild(this.bg, 1);
+        this.addChild(this.bg);
         // 房间号
         var roomLabel = new cc.LabelTTF("房间号：" + this.rid, "微软雅黑", 30);
         roomLabel.setPosition(roomLabel.width / 2 + 20, this.size.height - roomLabel.height / 2 - 20);
