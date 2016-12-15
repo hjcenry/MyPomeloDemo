@@ -3,6 +3,11 @@ var TouchType = {
     FOLLOW: "FOLLOW"
 };
 
+var MissLead = {
+    SPEED: 2,
+    ANGLE: 5
+}
+
 var DirectionType = {
     FOUR: "FOUR",
     EIGHT: "EIGHT",
@@ -266,10 +271,12 @@ var Controller = cc.Node.extend({
 
     //全方向移动
     _allDirectionsMove: function () {
-        // this._target.x += Math.cos(this._angle * (Math.PI / 180)) * this._speed;
-        // this._target.y += Math.sin(this._angle * (Math.PI / 180)) * this._speed;
-        this._target.setSpeed(this._speed);
-        this._target.setAngle(this._angle);
+        if (this._speed >= this._target.getSpeed() + MissLead.SPEED || this._speed <= this._target.getSpeed() - MissLead.SPEED) {
+            this._target.setSpeed(this._speed);
+        }
+        if (this._angle >= this._target.getAngle() + MissLead.ANGLE || this._angle <= this._target.getAngle() - MissLead.ANGLE) {
+            this._target.setAngle(this._angle);
+        }
     },
 
     //设置透明度

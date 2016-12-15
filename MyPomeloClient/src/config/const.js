@@ -1,7 +1,7 @@
 var Const = {
     Screen: {
-        width: 1000,// 屏幕宽度
-        height: 1000// 屏幕高度
+        width: 2000,// 屏幕宽度
+        height: 2000// 屏幕高度
     },
     Entity: {
         player: "player",// 玩家本身

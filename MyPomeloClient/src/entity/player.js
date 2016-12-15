@@ -12,7 +12,8 @@ var Player = cc.Sprite.extend({
         this.type = opt.type;
         this.radius = !!opt.radius ? opt.radius : this.radius;
         this.speed = !!opt.speed ? opt.speed : this.speed;
-        this.setTexture(res.ball_png);
+        var ballImgRandom = Math.ceil(Math.random() * 4);
+        this.setTexture("res/ball" + ballImgRandom + ".png");
         this.setScale(this.radius * 2 / this.width, this.radius * 2 / this.height);
         if (this.type == Const.Entity.player) {
             this.scheduleUpdate();
@@ -23,9 +24,15 @@ var Player = cc.Sprite.extend({
         // 速度计算公式（随便写的，大致速度差不多就行。。。）
         this.speed = Const.Screen.width / 10 * speed / (Const.Screen.width / 10);
     },
+    getSpeed: function () {
+        return this.speed * (Const.Screen.width / 10) / (Const.Screen.width / 10)
+    },
     setAngle: function (angle) {
         // 计算角度
         this.angle = angle;
+    },
+    getAngle: function () {
+        return this.angle;
     },
     setBgPosition: function (x, y) {
         // 小球坐标
@@ -53,35 +60,39 @@ var Player = cc.Sprite.extend({
         return this.y + this.bg.y;
     },
     moveX: function (moveX) {
-        var calBgMoveX = this.bg.x - moveX;
+        if (this.type = Const.Entity.player) {
+            var calBgMoveX = this.bg.x - moveX;
+            // 背景层下边界判断
+            calBgMoveX = calBgMoveX > 0 ? 0 : calBgMoveX;
+            // 背景层上边界判断
+            calBgMoveX = calBgMoveX < (-1) * (Const.Screen.width - cc.winSize.width) ? (-1) * (Const.Screen.width - cc.winSize.width) : calBgMoveX;
+            if (this.getWinSizeX() >= cc.winSize.width / 2 - 10 && this.getWinSizeX() <= cc.winSize.width / 2 + 10) {
+                this.bg.x = calBgMoveX;
+            }
+        }
         var calMoveX = this.x + moveX;
-        // 背景层下边界判断
-        calBgMoveX = calBgMoveX > 0 ? 0 : calBgMoveX;
-        // 背景层上边界判断
-        calBgMoveX = calBgMoveX < (-1) * (Const.Screen.width - cc.winSize.width) ? (-1) * (Const.Screen.width - cc.winSize.width) : calBgMoveX;
         // 小球下边界判断
         calMoveX = calMoveX < this.radius ? this.radius : calMoveX;
         // 小球上边界判断
         calMoveX = calMoveX > Const.Screen.width - this.radius ? Const.Screen.width - this.radius : calMoveX;
-        if (this.getWinSizeX() >= cc.winSize.width / 2 - 10 && this.getWinSizeX() <= cc.winSize.width / 2 + 10) {
-            this.bg.x = calBgMoveX;
-        }
         this.x = calMoveX;
     },
     moveY: function (moveY) {
-        var calBgMoveY = this.bg.y - moveY;
+        if (this.type = Const.Entity.player) {
+            var calBgMoveY = this.bg.y - moveY;
+            // 背景层下边界判断
+            calBgMoveY = calBgMoveY > 0 ? 0 : calBgMoveY;
+            // 背景层上边界判断
+            calBgMoveY = calBgMoveY < (-1) * (Const.Screen.height - cc.winSize.height) ? (-1) * (Const.Screen.height - cc.winSize.height) : calBgMoveY;
+            if (this.getWinSizeY() >= cc.winSize.height / 2 - 10 && this.getWinSizeY() <= cc.winSize.height / 2 + 10) {
+                this.bg.y = calBgMoveY;
+            }
+        }
         var calMoveY = this.y + moveY;
-        // 背景层下边界判断
-        calBgMoveY = calBgMoveY > 0 ? 0 : calBgMoveY;
-        // 背景层上边界判断
-        calBgMoveY = calBgMoveY < (-1) * (Const.Screen.height - cc.winSize.height) ? (-1) * (Const.Screen.height - cc.winSize.height) : calBgMoveY;
         // 小球下边界判断
         calMoveY = calMoveY < this.radius ? this.radius : calMoveY;
         // 小球上边界判断
         calMoveY = calMoveY > Const.Screen.height - this.radius ? Const.Screen.height - this.radius : calMoveY;
-        if (this.getWinSizeY() >= cc.winSize.height / 2 - 10 && this.getWinSizeY() <= cc.winSize.height / 2 + 10) {
-            this.bg.y = calBgMoveY;
-        }
         this.y = calMoveY;
     },
     update: function (dt) {
@@ -106,7 +117,8 @@ var Player = cc.Sprite.extend({
                 }
             });
         }
-    },
+    }
+    ,
     onMove: function (x, y) {
         this.setPosition(x, y);
     }

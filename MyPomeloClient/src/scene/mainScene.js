@@ -14,11 +14,15 @@ var MainSceneLayer = cc.Layer.extend({
         // 背景层
         this.bg = new cc.Layer();
         // 背景图片
-        var bgImg = new cc.Sprite(res.background);
+        var bgImg = new cc.Sprite(res.bg1);
         bgImg.setAnchorPoint(0, 0);
-        bgImg.setScale(Const.Screen.width / this.width, Const.Screen.height / this.height);
+        bgImg.setScale(Const.Screen.width / bgImg.width, Const.Screen.height / bgImg.height);
         this.bg.addChild(bgImg, 1);
         this.addChild(this.bg);
+        cc.log("screen w:", Const.Screen.width, ",h:", Const.Screen.height);
+        cc.log("winsize w:", cc.winSize.width, ",h:", cc.winSize.height);
+        cc.log("bg w:", this.bg.width, ",h:", this.bg.height);
+        cc.log("bg bounding w:", bgImg.getBoundingBox().width, ",h:", bgImg.getBoundingBox().height);
         // 房间号
         var roomLabel = new cc.LabelTTF("房间号：" + this.rid, "微软雅黑", 30);
         roomLabel.setPosition(roomLabel.width / 2 + 20, this.size.height - roomLabel.height / 2 - 20);
