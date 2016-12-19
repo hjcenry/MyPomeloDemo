@@ -49,7 +49,7 @@ PlayerService.getPlayers = function (rid, cb) {
  * @param player
  * @param cb
  */
-PlayerService.addPlayer = function (player, cb) {
+PlayerService.savePlayer = function (player, cb) {
     mem.get(playesKey(player.rid), function (err, data) {
         var players = data;
         if (err != null) {

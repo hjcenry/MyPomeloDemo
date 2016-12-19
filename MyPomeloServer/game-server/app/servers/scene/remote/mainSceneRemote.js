@@ -3,6 +3,7 @@ module.exports = function (app) {
 };
 
 var PlayerService = require('../../../service/playerService');
+var RoomService = require('../../../service/roomService');
 var Player = require('../../../entity/player');
 var utils = require('../../../util/utils');
 var logger = require('pomelo-logger').getLogger(__filename);
@@ -23,6 +24,9 @@ var MainSceneRemote = function (app) {
  */
 MainSceneRemote.prototype.add = function (uid, sid, name, flag, cb) {
     var channel = this.channelService.getChannel(name, flag);
+    if (flag) {
+        RoomService.saveRoom(name);
+    }
     var username = uid.split('*')[0];
     // 创建玩家
     var player = new Player({
@@ -31,7 +35,7 @@ MainSceneRemote.prototype.add = function (uid, sid, name, flag, cb) {
     });
     // 添加玩家信息
     var self = this;
-    PlayerService.addPlayer(player, function (err, data) {
+    PlayerService.savePlayer(player, function (err, data) {
         // 添加到channel
         if (!!channel) {
             channel.add(uid, sid);
@@ -73,6 +77,11 @@ MainSceneRemote.prototype.kick = function (args, cb) {
     // leave channel
     if (!!channel) {
         channel.leave(uid, sid);
+        if (channel.getMembers().length == 0) {
+            // 房间没有人时销毁房间
+            RoomService.deleteRoom(rid);
+            channel.destroy();
+        }
     }
     PlayerService.deletePlayer(uid.split("*")[0], rid, function (err, data) {
         channel.pushMessage(Event.leave, {

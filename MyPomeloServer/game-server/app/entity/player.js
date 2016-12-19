@@ -5,6 +5,7 @@ var PlayerInit = require('../const/const').PlayerInit;
 var logger = require('pomelo-logger').getLogger(__filename);
 var pomelo = require('pomelo');
 var utils = require('../util/utils');
+var PlayerService = require('../service/playerService');
 
 /**
  * 构造玩家信息
@@ -38,21 +39,21 @@ Player.prototype.init = function () {
  * @param moveX
  * @param moveY
  */
-Player.prototype.move = function (angle, speed, next) {
+Player.prototype.move = function (angle, speed) {
     var moveX = Math.cos(angle * (Math.PI / 180)) * speed;
     var moveY = Math.sin(angle * (Math.PI / 180)) * speed;
     this.position.x += moveX;
     this.position.y += moveY;
     // 判断左边界
-    this.position.x = this.position.x - this.radius < 0 ? this.radiu : this.position.x;
+    this.position.x = this.position.x - this.radius < 0 ? this.radius : this.position.x;
     // 判断右边界
     this.position.x = this.position.x + this.radius > Screen.width ? Screen.width - this.radius : this.position.x;
     // 判断下边界
-    this.position.y = this.position.y - this.radius < 0 ? this.radiu : this.position.y;
+    this.position.y = this.position.y - this.radius < 0 ? this.radius : this.position.y;
     // 判断上边界
     this.position.y = this.position.y + this.radius > Screen.height ? Screen.height - this.radius : this.position.y;
-    // 执行next
-    utils.invokeCallback(next, this.position.x, this.position.y);
+    // 同步到缓存
+    PlayerService.savePlayer(this);
 }
 
 /**
