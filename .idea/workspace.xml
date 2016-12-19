@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1fa4739e-9d9b-44f2-a154-b5c210bee63a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/MyPomeloServer/game-server/app/service/roomService.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyPomeloClient/pomelo-cocos2d-js" afterPath="$PROJECT_DIR$/MyPomeloClient/pomelo-cocos2d-js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyPomeloServer/game-server/app/entity/player.js" afterPath="$PROJECT_DIR$/MyPomeloServer/game-server/app/entity/player.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyPomeloServer/game-server/app/servers/scene/handler/mainSceneHandler.js" afterPath="$PROJECT_DIR$/MyPomeloServer/game-server/app/servers/scene/handler/mainSceneHandler.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyPomeloServer/game-server/app/servers/scene/remote/mainSceneRemote.js" afterPath="$PROJECT_DIR$/MyPomeloServer/game-server/app/servers/scene/remote/mainSceneRemote.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyPomeloServer/game-server/app/service/playerService.js" afterPath="$PROJECT_DIR$/MyPomeloServer/game-server/app/service/playerService.js" />
     </list>
     <ignored path="MyPomeloDemo.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -1146,7 +1139,7 @@
       <workItem from="1481721068773" duration="9437000" />
       <workItem from="1481768425624" duration="11582000" />
       <workItem from="1481815249010" duration="18000" />
-      <workItem from="1482157893004" duration="3297000" />
+      <workItem from="1482157893004" duration="3397000" />
     </task>
     <task id="LOCAL-00001" summary="add pomelo-cocos2d-js">
       <created>1481722555388</created>
@@ -1159,11 +1152,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="166583000" />
+    <option name="totallyTimeSpent" value="166683000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="711" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1173,7 +1166,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19709209" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41357028" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21324718" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
