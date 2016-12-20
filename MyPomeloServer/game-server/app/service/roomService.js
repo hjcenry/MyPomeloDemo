@@ -9,6 +9,10 @@ var roomKey = function () {
     return "room";
 }
 
+/**
+ * 获取所有房间
+ * @param cb
+ */
 RoomService.getRooms = function (cb) {
     mem.get(roomKey(), function (err, data) {
         if (err != null) {
@@ -19,6 +23,11 @@ RoomService.getRooms = function (cb) {
     });
 }
 
+/**
+ * 保存房间
+ * @param rid
+ * @param cb
+ */
 RoomService.saveRoom = function (rid, cb) {
     mem.get(roomKey(), function (err, data) {
         var rooms = data;
@@ -34,6 +43,11 @@ RoomService.saveRoom = function (rid, cb) {
     });
 }
 
+/**
+ * 删除房间
+ * @param rid
+ * @param cb
+ */
 RoomService.deleteRoom = function (rid, cb) {
     mem.get(roomKey(), function (err, data) {
         var rooms = data;

@@ -2,11 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1fa4739e-9d9b-44f2-a154-b5c210bee63a" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyPomeloClient/pomelo-cocos2d-js" afterPath="$PROJECT_DIR$/MyPomeloClient/pomelo-cocos2d-js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+<<<<<<< HEAD
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyPomeloClient/src/entity/player.js" afterPath="$PROJECT_DIR$/MyPomeloClient/src/entity/player.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyPomeloServer/game-server/app/const/const.js" afterPath="$PROJECT_DIR$/MyPomeloServer/game-server/app/const/const.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyPomeloServer/game-server/app/entity/player.js" afterPath="$PROJECT_DIR$/MyPomeloServer/game-server/app/entity/player.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyPomeloServer/game-server/app/servers/scene/handler/mainSceneHandler.js" afterPath="$PROJECT_DIR$/MyPomeloServer/game-server/app/servers/scene/handler/mainSceneHandler.js" />
+=======
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyPomeloClient/src/net/net.js" afterPath="$PROJECT_DIR$/MyPomeloClient/src/net/net.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyPomeloServer/game-server/app/const/const.js" afterPath="$PROJECT_DIR$/MyPomeloServer/game-server/app/const/const.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyPomeloServer/game-server/app/servers/scene/handler/mainSceneHandler.js" afterPath="$PROJECT_DIR$/MyPomeloServer/game-server/app/servers/scene/handler/mainSceneHandler.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyPomeloServer/game-server/app/service/Timer.js" afterPath="$PROJECT_DIR$/MyPomeloServer/game-server/app/service/Timer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MyPomeloServer/game-server/app/service/roomService.js" afterPath="$PROJECT_DIR$/MyPomeloServer/game-server/app/service/roomService.js" />
+>>>>>>> ac1c3c474ae998c3e48016bea14fa11f3d4a1514
     </list>
     <ignored path="MyPomeloDemo.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,8 +39,23 @@
       <file leaf-file-name="mainSceneHandler.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MyPomeloServer/game-server/app/servers/scene/handler/mainSceneHandler.js">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="258">
               <caret line="31" column="34" selection-start-line="31" selection-start-column="34" selection-end-line="31" selection-end-column="34" />
+=======
+            <state relative-caret-position="227">
+              <caret line="15" column="22" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Timer.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/MyPomeloServer/game-server/app/service/Timer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="295">
+              <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+>>>>>>> ac1c3c474ae998c3e48016bea14fa11f3d4a1514
               <folding />
             </state>
           </provider>
@@ -40,28 +64,69 @@
       <file leaf-file-name="net.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MyPomeloClient/src/net/net.js">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="120">
               <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+=======
+            <state relative-caret-position="340">
+              <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="24" />
+>>>>>>> ac1c3c474ae998c3e48016bea14fa11f3d4a1514
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="entryHandler.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MyPomeloServer/game-server/app/servers/connector/handler/entryHandler.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="348">
               <caret line="46" column="24" selection-start-line="46" selection-start-column="19" selection-end-line="46" selection-end-column="24" />
+=======
+      <file leaf-file-name="mainSceneRemote.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MyPomeloServer/game-server/app/servers/scene/remote/mainSceneRemote.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" column="2" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="2" />
+>>>>>>> ac1c3c474ae998c3e48016bea14fa11f3d4a1514
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="player.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MyPomeloServer/game-server/app/entity/player.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="256">
               <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+=======
+      <file leaf-file-name="const.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MyPomeloServer/game-server/app/const/const.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="channelService.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MyPomeloServer/game-server/node_modules/pomelo/lib/common/service/channelService.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4811">
+              <caret line="283" column="12" selection-start-line="283" selection-start-column="9" selection-end-line="283" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="roomService.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MyPomeloServer/game-server/app/service/roomService.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="206">
+              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+>>>>>>> ac1c3c474ae998c3e48016bea14fa11f3d4a1514
               <folding />
             </state>
           </provider>
@@ -70,6 +135,7 @@
       <file leaf-file-name="mainSceneRemote.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MyPomeloServer/game-server/app/servers/scene/remote/mainSceneRemote.js">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="315">
               <caret line="91" column="2" selection-start-line="91" selection-start-column="2" selection-end-line="91" selection-end-column="2" />
               <folding />
@@ -92,6 +158,10 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-1167">
               <caret line="17" column="15" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
+=======
+            <state relative-caret-position="-49">
+              <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+>>>>>>> ac1c3c474ae998c3e48016bea14fa11f3d4a1514
               <folding />
             </state>
           </provider>
@@ -131,24 +201,37 @@
         <option value="$PROJECT_DIR$/MyPomeloClient/src/config/net.js" />
         <option value="$PROJECT_DIR$/MyPomeloServer/game-server/app/servers/connector/handler/entryHandler.js" />
         <option value="$PROJECT_DIR$/MyPomeloClient/src/config/userinfo.js" />
-        <option value="$PROJECT_DIR$/MyPomeloClient/src/net/net.js" />
         <option value="$PROJECT_DIR$/MyPomeloClient/src/entity/mainBg.js" />
         <option value="$PROJECT_DIR$/MyPomeloClient/src/global.js" />
         <option value="$PROJECT_DIR$/MyPomeloClient/src/app.js" />
         <option value="$PROJECT_DIR$/MyPomeloClient/project.json" />
         <option value="$PROJECT_DIR$/MyPomeloClient/main.js" />
         <option value="$PROJECT_DIR$/MyPomeloClient/src/config/const.js" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/MyPomeloServer/game-server/app/service/Timer.js" />
+=======
+        <option value="$PROJECT_DIR$/MyPomeloClient/src/entity/player.js" />
+>>>>>>> ac1c3c474ae998c3e48016bea14fa11f3d4a1514
         <option value="$PROJECT_DIR$/MyPomeloClient/src/scene/mainScene.js" />
         <option value="$PROJECT_DIR$/MyPomeloClient/src/resource.js" />
         <option value="$PROJECT_DIR$/MyPomeloClient/src/entity/controller.js" />
         <option value="$PROJECT_DIR$/MyPomeloServer/game-server/app/service/playerService.js" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/MyPomeloServer/game-server/app/service/roomService.js" />
         <option value="$PROJECT_DIR$/MyPomeloServer/game-server/app/const/const.js" />
         <option value="$PROJECT_DIR$/MyPomeloServer/game-server/app/servers/scene/remote/mainSceneRemote.js" />
         <option value="$PROJECT_DIR$/MyPomeloServer/game-server/app/entity/player.js" />
         <option value="$PROJECT_DIR$/MyPomeloServer/game-server/app/servers/scene/handler/mainSceneHandler.js" />
         <option value="$PROJECT_DIR$/MyPomeloClient/src/entity/player.js" />
+=======
+        <option value="$PROJECT_DIR$/MyPomeloServer/game-server/app/entity/player.js" />
+        <option value="$PROJECT_DIR$/MyPomeloServer/game-server/app/servers/scene/remote/mainSceneRemote.js" />
+        <option value="$PROJECT_DIR$/MyPomeloServer/game-server/app/service/roomService.js" />
+        <option value="$PROJECT_DIR$/MyPomeloClient/src/net/net.js" />
+        <option value="$PROJECT_DIR$/MyPomeloServer/game-server/app/const/const.js" />
+        <option value="$PROJECT_DIR$/MyPomeloServer/game-server/app/service/Timer.js" />
+        <option value="$PROJECT_DIR$/MyPomeloServer/game-server/app/servers/scene/handler/mainSceneHandler.js" />
+>>>>>>> ac1c3c474ae998c3e48016bea14fa11f3d4a1514
       </list>
     </option>
   </component>
@@ -171,9 +254,10 @@
     <handled-path value="$PROJECT_DIR$/MyPomeloServer/web-server/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
-    <option name="width" value="1280" />
-    <option name="height" value="711" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1874" />
+    <option name="height" value="1096" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -200,6 +284,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scratches" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
@@ -1122,6 +1207,7 @@
       <workItem from="1481768425624" duration="11582000" />
       <workItem from="1481815249010" duration="18000" />
       <workItem from="1482157893004" duration="3397000" />
+      <workItem from="1482203612254" duration="13508000" />
     </task>
     <task id="LOCAL-00001" summary="add pomelo-cocos2d-js">
       <created>1481722555388</created>
@@ -1134,10 +1220,17 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="171624000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="711" extended-state="0" />
+=======
+    <option name="totallyTimeSpent" value="180191000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1874" height="1096" extended-state="6" />
+>>>>>>> ac1c3c474ae998c3e48016bea14fa11f3d4a1514
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1146,12 +1239,16 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2956381" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+=======
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34314722" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+>>>>>>> ac1c3c474ae998c3e48016bea14fa11f3d4a1514
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21324718" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2131324" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1386,10 +1483,18 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/MyPomeloServer/game-server/app/service/Timer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+=======
+    <entry file="file://$PROJECT_DIR$/MyPomeloServer/game-server/app/servers/connector/handler/entryHandler.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="46" column="24" selection-start-line="46" selection-start-column="19" selection-end-line="46" selection-end-column="24" />
+          <folding />
+>>>>>>> ac1c3c474ae998c3e48016bea14fa11f3d4a1514
         </state>
       </provider>
     </entry>
@@ -1415,7 +1520,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MyPomeloClient/src/resource.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
+        <state relative-caret-position="153">
           <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
           <folding />
         </state>
@@ -1423,8 +1528,14 @@
     </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DOMCore.js">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="439">
           <caret line="1078" column="0" selection-start-line="1078" selection-start-column="0" selection-end-line="1078" selection-end-column="0" />
+=======
+        <state relative-caret-position="4012">
+          <caret line="236" column="9" selection-start-line="236" selection-start-column="9" selection-end-line="236" selection-end-column="9" />
+          <folding />
+>>>>>>> ac1c3c474ae998c3e48016bea14fa11f3d4a1514
         </state>
       </provider>
     </entry>
@@ -1438,62 +1549,108 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MyPomeloClient/src/entity/controller.js">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="239">
           <caret line="274" column="47" selection-start-line="274" selection-start-column="47" selection-end-line="274" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyPomeloServer/game-server/app/service/playerService.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="36" column="7" selection-start-line="36" selection-start-column="7" selection-end-line="36" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyPomeloServer/game-server/app/service/roomService.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyPomeloServer/game-server/node_modules/pomelo/lib/components/channel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MyPomeloClient/src/scene/mainScene.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="14" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
+=======
+        <state relative-caret-position="238">
+          <caret line="14" column="57" selection-start-line="14" selection-start-column="57" selection-end-line="14" selection-end-column="57" />
+>>>>>>> ac1c3c474ae998c3e48016bea14fa11f3d4a1514
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MyPomeloServer/game-server/node_modules/pomelo/lib/common/service/channelService.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="64" column="29" selection-start-line="64" selection-start-column="29" selection-end-line="64" selection-end-column="29" />
+        <state relative-caret-position="4811">
+          <caret line="283" column="12" selection-start-line="283" selection-start-column="9" selection-end-line="283" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/MyPomeloServer/game-server/app/service/roomService.js">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="199">
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+=======
+        <state relative-caret-position="206">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+>>>>>>> ac1c3c474ae998c3e48016bea14fa11f3d4a1514
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyPomeloClient/pomelo-cocos2d-js/test/test-chat-websocket.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/MyPomeloClient/src/scene/mainScene.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="14" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
+=======
+    <entry file="file://$PROJECT_DIR$/MyPomeloServer/game-server/app/service/playerService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-49">
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+>>>>>>> ac1c3c474ae998c3e48016bea14fa11f3d4a1514
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyPomeloServer/game-server/node_modules/pomelo/lib/common/service/channelService.js">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="15">
+          <caret line="64" column="29" selection-start-line="64" selection-start-column="29" selection-end-line="64" selection-end-column="29" />
+=======
+        <state relative-caret-position="340">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyPomeloClient/src/net/net.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="24" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="24" />
+>>>>>>> ac1c3c474ae998c3e48016bea14fa11f3d4a1514
+          <folding />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/MyPomeloClient/frameworks/cocos2d-html5/cocos2d/actions/CCActionInstant.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="417" column="0" selection-start-line="417" selection-start-column="0" selection-end-line="417" selection-end-column="0" />
+=======
+    <entry file="file://$PROJECT_DIR$/MyPomeloServer/game-server/app/const/const.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MyPomeloServer/game-server/node_modules/pomelo/lib/components/channel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+>>>>>>> ac1c3c474ae998c3e48016bea14fa11f3d4a1514
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MyPomeloServer/game-server/app/servers/scene/remote/mainSceneRemote.js">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="315">
           <caret line="91" column="2" selection-start-line="91" selection-start-column="2" selection-end-line="91" selection-end-column="2" />
           <folding />
@@ -1512,12 +1669,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+=======
+        <state relative-caret-position="238">
+          <caret line="14" column="2" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="2" />
+>>>>>>> ac1c3c474ae998c3e48016bea14fa11f3d4a1514
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MyPomeloServer/game-server/app/servers/scene/handler/mainSceneHandler.js">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="258">
           <caret line="31" column="34" selection-start-line="31" selection-start-column="34" selection-end-line="31" selection-end-column="34" />
           <folding />
@@ -1528,14 +1690,25 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="256">
           <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+=======
+        <state relative-caret-position="227">
+          <caret line="15" column="22" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
+>>>>>>> ac1c3c474ae998c3e48016bea14fa11f3d4a1514
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/MyPomeloClient/src/entity/player.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1167">
           <caret line="17" column="15" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
+=======
+    <entry file="file://$PROJECT_DIR$/MyPomeloServer/game-server/app/service/Timer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+>>>>>>> ac1c3c474ae998c3e48016bea14fa11f3d4a1514
           <folding />
         </state>
       </provider>

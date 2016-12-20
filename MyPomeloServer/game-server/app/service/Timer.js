@@ -1,36 +1,46 @@
-var Timer = function(opts){
-    this.area = opts.area;
-    this.interval = opts.interval||100;
+var PlayerService = require('../../../service/playerService');
+var RoomService = require('../../../service/roomService');
+var Player = require('../../../entity/player');
+var utils = require('../../../util/utils');
+var logger = require('pomelo-logger').getLogger(__filename);
+var Event = require('../../../const/const').Event;
+var Tick = require('../../../const/const').Tick;
+
+var Timer = function (opts, app) {
+    this.type = opts.type;
+    this.app = app;
+    this.interval = opts.interval || 100;
 };
 
+module.exports = Timer;
 
 Timer.prototype.run = function () {
-    this.interval = setInterval(this.tick.bind(this), this.interval); //定时执行 tick
+    switch (type) {
+        case Tick.updateMainScene:
+            this.interval = setInterval(this.updateScene.bind(this), this.interval); //定时执行 tick
+            break;
+    }
 };
 
-Timer.prototype.tick = function() {
-    var area = this.area;
-
-    //Update mob zones
-    for(var key in area.zones){
-        area.zones[key].update();  //遍历 所有zones的更新
-    }
-
-    //Update all the items
-    for(var id in area.items) {  //检查人物状态值
-        var item = area.entities[id];
-        item.update();
-
-        if(item.died) {   //如果角色死亡，向客户端发送消息
-            area.channel.pushMessage('onRemoveEntities', {entities: [id]});
-            area.removeEntity(id);
+Timer.prototype.updateScene = function () {
+    // 获取所有的房间
+    RoomService.getRooms(function (err, rooms) {
+        if (err != null) {
+            logger.error("tick update scene failed,get rooms failed! err", err);
+            return;
         }
-    }
-
-    //run all the action
-    area.actionManager.update(); //动作更新
-
-    area.aiManager.update();  //ai 更新，检查ai反应动作
-
-    area.patrolManager.update(); //patrol巡逻动作更新
+        // 遍历所有房间
+        for (var index in rooms) {
+            rid = rooms[index];
+            var channelService = this.app.get('channelService');
+            var channel = this.channelService.getChannel(rid, false);
+            PlayerService.getPlayers(rid, function (err, players) {
+                if (err != null) {
+                    logger.error("tick update scene failed,get players failed! err", err);
+                    return;
+                }
+                channel.pushMessage(Route.mainSceneUpdateState, {players: players});
+            });
+        }
+    });
 };

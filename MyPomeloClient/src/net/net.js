@@ -9,5 +9,6 @@ var Route = {
 var Event = {
     move: 'onMove',
     enter: 'onEnter',
-    leave: 'onLeave'
+    leave: 'onLeave',
+    mainSceneUpdateState: 'onMainSceneUpdateState'
 }

@@ -21,5 +21,9 @@ module.exports = {
     Screen: {
         width: 2000,
         height: 2000
+    },
+
+    Tick: {
+        updateMainScene: 1
     }
 };
