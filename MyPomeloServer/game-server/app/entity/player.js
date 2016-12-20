@@ -27,6 +27,8 @@ Player.prototype.init = function () {
     this.type = EntityType.player;
     this.radius = PlayerInit.initRadius;
     this.speed = PlayerInit.initSpeed;
+    this.angle = PlayerInit.initAngle;
+    this.timestamp = new Date().getTime();
     this.position = {
         x: Math.random() * 1000 - PlayerInit.initRadius,
         y: Math.random() * 1000 - PlayerInit.initRadius
@@ -40,18 +42,24 @@ Player.prototype.init = function () {
  * @param moveY
  */
 Player.prototype.move = function (angle, speed) {
-    var moveX = Math.cos(angle * (Math.PI / 180)) * speed;
-    var moveY = Math.sin(angle * (Math.PI / 180)) * speed;
-    this.position.x += moveX;
-    this.position.y += moveY;
-    // 判断左边界
-    this.position.x = this.position.x - this.radius < 0 ? this.radius : this.position.x;
-    // 判断右边界
-    this.position.x = this.position.x + this.radius > Screen.width ? Screen.width - this.radius : this.position.x;
-    // 判断下边界
-    this.position.y = this.position.y - this.radius < 0 ? this.radius : this.position.y;
-    // 判断上边界
-    this.position.y = this.position.y + this.radius > Screen.height ? Screen.height - this.radius : this.position.y;
+    // 计算之前角度与速度的位移
+    var timestamp = new Date().getTime();
+    var frame = (timestamp - this.timestamp) / (1000 / 60);// 经过的帧
+    if (frame > 0) {
+        var moveX = Math.cos(angle * (Math.PI / 180)) * speed * frame;
+        var moveY = Math.sin(angle * (Math.PI / 180)) * speed * frame;
+        this.position.x += moveX;
+        this.position.y += moveY;
+        // 判断左边界
+        this.position.x = this.position.x - this.radius < 0 ? this.radius : this.position.x;
+        // 判断右边界
+        this.position.x = this.position.x + this.radius > Screen.width ? Screen.width - this.radius : this.position.x;
+        // 判断下边界
+        this.position.y = this.position.y - this.radius < 0 ? this.radius : this.position.y;
+        // 判断上边界
+        this.position.y = this.position.y + this.radius > Screen.height ? Screen.height - this.radius : this.position.y;
+        this.timestamp = timestamp;
+    }
     // 同步到缓存
     PlayerService.savePlayer(this);
 }

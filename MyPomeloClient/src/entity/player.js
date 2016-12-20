@@ -15,9 +15,8 @@ var Player = cc.Sprite.extend({
         var ballImgRandom = Math.ceil(Math.random() * 4);
         this.setTexture("res/ball" + ballImgRandom + ".png");
         this.setScale(this.radius * 2 / this.width, this.radius * 2 / this.height);
-        if (this.type == Const.Entity.player) {
-            this.scheduleUpdate();
-        }
+        // 定时更新
+        this.scheduleUpdate();
         return true;
     },
     setSpeed: function (speed) {
@@ -60,7 +59,7 @@ var Player = cc.Sprite.extend({
         return this.y + this.bg.y;
     },
     moveX: function (moveX) {
-        if (this.type = Const.Entity.player) {
+        if (this.type == Const.Entity.player) {
             var calBgMoveX = this.bg.x - moveX;
             // 背景层下边界判断
             calBgMoveX = calBgMoveX > 0 ? 0 : calBgMoveX;
@@ -78,7 +77,7 @@ var Player = cc.Sprite.extend({
         this.x = calMoveX;
     },
     moveY: function (moveY) {
-        if (this.type = Const.Entity.player) {
+        if (this.type == Const.Entity.player) {
             var calBgMoveY = this.bg.y - moveY;
             // 背景层下边界判断
             calBgMoveY = calBgMoveY > 0 ? 0 : calBgMoveY;
@@ -98,28 +97,27 @@ var Player = cc.Sprite.extend({
     update: function (dt) {
         var moveX = Math.cos(this.angle * (Math.PI / 180)) * this.speed;
         var moveY = Math.sin(this.angle * (Math.PI / 180)) * this.speed;
-        var startBgX = this.bg.x;
-        var startBgY = this.bg.y;
         var startX = this.x;
         var startY = this.y;
         this.moveX(moveX);
         this.moveY(moveY);
-        // 背景图或小球发生位移，则发送服务端通知
-        var isBgMoveX = startBgX == this.bg.x;
-        var isBgMoveY = startBgY == this.bg.y;
-        var isMoveX = startX == this.x;
-        var isMoveY = startY == this.y;
-        if (isBgMoveX || isBgMoveY || isMoveX || isMoveY) {
-            // 通知服务端移动操作
-            this.pomelo.notify(Route.move, {angle: this.angle, speed: this.speed}, function (err) {
-                if (!!err) {
-                    cc.log("move update err:" + err)
-                }
-            });
+        if (this.type == Const.Entity.player) {
+            // 背景图或小球发生位移，则发送服务端通知
+            var isMoveX = startX == this.x ? true : false;
+            var isMoveY = startY == this.y ? true : false;
+            if (isMoveX || isMoveY) {
+                // 通知服务端移动操作
+                this.pomelo.notify(Route.move, {angle: this.angle, speed: this.speed}, function (err) {
+                    if (!!err) {
+                        cc.log("move update err:" + err)
+                    }
+                });
+            }
         }
-    }
-    ,
-    onMove: function (x, y) {
-        this.setPosition(x, y);
+    },
+    onMove: function (player) {
+        this.angle = player.angle;
+        this.speed = player.speed;
+        this.setPosition(player.x, player.y);
     }
 });

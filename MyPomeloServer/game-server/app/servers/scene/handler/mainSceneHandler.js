@@ -23,11 +23,15 @@ var handler = Handler.prototype;
 handler.move = function (msg, session, next) {
     var rid = session.get('rid');
     var username = session.uid.split('*')[0];
-    // var channelService = this.app.get('channelService');
     // 玩家执行移动方法
     PlayerService.getPlayerByName(username, rid, function (err, data) {
         var player = data;
         player.move(msg.angle, msg.speed);
+        var channel = this.channelService.getChannel(rid, false);
+        // 推送玩家信息给当前房间其他玩家
+        channel.pushMessage(Event.move, {
+            player: player
+        });
     });
     utils.invokeCallback(next);
 };

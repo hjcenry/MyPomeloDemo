@@ -2,7 +2,8 @@ module.exports = {
 
     PlayerInit: {
         initRadius: 10,
-        initSpeed: 50
+        initSpeed: 0,
+        initAngle: 0
     },
 
     EntityType: {
