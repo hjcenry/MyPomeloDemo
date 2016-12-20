@@ -13,11 +13,11 @@ module.exports = function (app) {
 var Handler = function (app) {
     this.app = app;
     // 启用主场景定时器
-    var timer = new Timer({
-        type: Tick.updateMainScene,// 定时器类型
-        interval: 100 // 定时器执行间隔时间
-    }, this.app);
-    timer.run();
+    // var timer = new Timer({
+    //     type: Tick.updateMainScene,// 定时器类型
+    //     interval: 100 // 定时器执行间隔时间
+    // }, this.app);
+    // timer.run();
 };
 
 var handler = Handler.prototype;
