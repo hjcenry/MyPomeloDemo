@@ -2,6 +2,8 @@ var Event = require('../../../const/const').Event;
 var PlayerService = require('../../../service/playerService');
 var logger = require('pomelo-logger').getLogger(__filename);
 // var Player = require('../../../entity/player');
+var Timer = require("../../../service/Timer");
+var Tick = require('../../../const/const').Tick;
 var utils = require('../../../util/utils');
 
 module.exports = function (app) {
@@ -10,6 +12,12 @@ module.exports = function (app) {
 
 var Handler = function (app) {
     this.app = app;
+    // 启用主场景定时器
+    var timer = new Timer({
+        type: Tick.updateMainScene,// 定时器类型
+        interval: 100 // 定时器执行间隔时间
+    }, this.app);
+    timer.run();
 };
 
 var handler = Handler.prototype;
