@@ -15,6 +15,9 @@ var Player = cc.Sprite.extend({
         var ballImgRandom = Math.ceil(Math.random() * 4);
         this.setTexture("res/ball" + ballImgRandom + ".png");
         this.setScale(this.radius * 2 / this.width, this.radius * 2 / this.height);
+        // 小球坐标
+        this.x = opt.position.x;
+        this.y = opt.position.y;
         // 定时更新
         this.scheduleUpdate();
         return true;
@@ -42,9 +45,6 @@ var Player = cc.Sprite.extend({
         return this.angle;
     },
     setBgPosition: function (x, y) {
-        // 小球坐标
-        this.x = x;
-        this.y = y;
         // 背景图坐标
         this.bg.x = (-1) * (this.x - cc.winSize.width / 2);
         this.bg.y = (-1) * (this.y - cc.winSize.height / 2);
@@ -67,8 +67,9 @@ var Player = cc.Sprite.extend({
         return this.y + this.bg.y;
     },
     notifyServerMove: function (angle, speed) {
+        cc.log("notify server move angle[", angle, "],speed[", speed, "]");
         this.pomelo.notify(Route.move, {angle: angle, speed: speed}, function (err) {
-            if (!!err) {
+            if (err != null) {
                 cc.log("move update err:" + err)
             }
         });

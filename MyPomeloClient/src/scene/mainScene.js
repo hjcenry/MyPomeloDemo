@@ -31,7 +31,8 @@ var MainSceneLayer = cc.Layer.extend({
                 player = new Player({
                     id: username,
                     radius: users[username].radius,
-                    type: Const.Entity.player
+                    type: Const.Entity.player,
+                    position: users[username].position
                 });
                 player.setBg(this.bg);
                 player.setBgPosition(users[username].position.x, users[username].position.y);
@@ -40,10 +41,11 @@ var MainSceneLayer = cc.Layer.extend({
                 player = new Player({
                     id: username,
                     radius: users[username].radius,
-                    type: Const.Entity.other
+                    type: Const.Entity.other,
+                    position: users[username].position
                 });
             }
-            this.bg.addChild(player, 2);
+            this.bg.addChild(player, 2, this.userTags[username]);
         }
         // 虚拟摇杆
         var controller = new Controller(res.controllerBG_png, res.controller_png, 50, TouchType.FOLLOW, DirectionType.ALL, this.player);
@@ -54,29 +56,40 @@ var MainSceneLayer = cc.Layer.extend({
         controller.setEnable(true);
         this.addChild(controller, 10, 101);
         pomelo.on(Event.move, function (data) {
+            cc.log("============");
+            cc.log(data);
             // 其他玩家的移动方法
-            var userTag = self.userTags[data.id];
-            var user = self.getChildByTag(userTag);
-            user.setSpeed(data.speed);
-            user.setAngle(data.angle);
-            user.setPosition(data.position.x, data.position.y);
+            if (data.uid != Userinfo.uid) {
+                var userTag = self.userTags[data.uid];
+                cc.log(userTag);
+                var user = self.bg.getChildByTag(userTag);
+                user.setSpeed(data.speed);
+                user.setAngle(data.angle);
+                user.setPosition(data.x, data.y);
+            }
         });
         pomelo.on(Event.enter, function (data) {
+            cc.log(data.uid + " enter");
             // 其他玩家进入的方法
             if (data.uid != Userinfo.uid) {
-                var player = new player({
+                self.userTags[data.uid] = self.createTag();
+                cc.log(self.userTags[data.uid]);
+                var player = new Player({
                     id: data.uid,
                     radius: data.radius,
-                    type: Const.Entity.other
+                    type: Const.Entity.other,
+                    position: {x: data.x, y: data.y}
                 });
-                player.setPosition(data.x, data.y);
-                self.bg.addChild(player);
+                self.bg.addChild(player, 2, self.userTags[data.uid]);
             }
         });
         pomelo.on(Event.leave, function (data) {
+            cc.log(data.uid + " leave");
             // 其他玩家离开的方法
-            self.getChildByTag(self.userTags[data.uid]).removeFromParent();
-            delete self.userTags[data.uid];
+            if (data.uid != Userinfo.uid) {
+                self.bg.getChildByTag(self.userTags[data.uid]).removeFromParent();
+                delete self.userTags[data.uid];
+            }
         });
         return true;
     },
@@ -88,7 +101,8 @@ var MainSceneLayer = cc.Layer.extend({
         for (var username in this.userTags) {
             tags.push(this.userTags[username]);
         }
-        return Math.max.apply(null, tags) + 1;
+        var max = tags.length == 0 ? 1 : Math.max.apply(null, tags) + 1;
+        return max;
     },
     setUserInfo: function (player) {
         // 设置用户信息

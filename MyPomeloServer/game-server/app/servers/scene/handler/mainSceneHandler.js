@@ -40,7 +40,11 @@ handler.move = function (msg, session, next) {
             player.move(msg.angle, msg.speed);
             // 推送玩家信息给当前房间其他玩家
             channel.pushMessage(Event.move, {
-                player: player
+                uid: player.id,
+                speed: player.speed,
+                angle: player.angle,
+                x: player.position.x,
+                y: player.position.y
             });
         }
     });
