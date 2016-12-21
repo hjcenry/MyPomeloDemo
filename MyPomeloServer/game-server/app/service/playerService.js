@@ -2,6 +2,7 @@ var logger = require('pomelo-logger').getLogger(__filename);
 var pomelo = require('pomelo');
 var mem = pomelo.app.get("memclient");
 var utils = require('../util/utils');
+var Player = require('../entity/player');
 
 var PlayerService = module.exports;
 
@@ -18,8 +19,8 @@ var playesKey = function (rid) {
 PlayerService.getPlayerByName = function (name, rid, cb) {
     mem.get(playesKey(rid), function (err, data) {
         var players = data;
-        var player = players[name];
-        if (err !== null) {
+        var player = new Player(players[name]);
+        if (err != null) {
             utils.invokeCallback(cb, err.message, null);
         } else if (!!player) {
             utils.invokeCallback(cb, null, player);
@@ -36,6 +37,9 @@ PlayerService.getPlayerByName = function (name, rid, cb) {
  */
 PlayerService.getPlayers = function (rid, cb) {
     mem.get(playesKey(rid), function (err, data) {
+        for (var key in data) {
+            data[key] = new Player(data[key]);
+        }
         if (err != null) {
             utils.invokeCallback(cb, err.message, null);
         } else {

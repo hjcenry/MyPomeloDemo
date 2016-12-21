@@ -15,7 +15,12 @@ var PlayerService = require('../service/playerService');
 var Player = function (opts) {
     this.id = opts.id;
     this.rid = opts.rid;
-    this.init();
+    this.type = opts.type;
+    this.radius = opts.radius;
+    this.speed = opts.speed;
+    this.angle = opts.angle;
+    this.timestamp = opts.timestamp;
+    this.position = opts.position;
 };
 
 module.exports = Player;
@@ -44,10 +49,10 @@ Player.prototype.init = function () {
 Player.prototype.move = function (angle, speed) {
     // 计算之前角度与速度的位移
     var timestamp = new Date().getTime();
-    var frame = (timestamp - this.timestamp) / (1000 / 60);// 经过的帧
+    var frame = Math.round((timestamp - this.timestamp) / (1000 / 60));// 经过的帧
     if (frame > 0) {
-        var moveX = Math.cos(angle * (Math.PI / 180)) * speed * frame;
-        var moveY = Math.sin(angle * (Math.PI / 180)) * speed * frame;
+        var moveX = Math.cos(this.angle * (Math.PI / 180)) * this.speed * frame;
+        var moveY = Math.sin(this.angle * (Math.PI / 180)) * this.speed * frame;
         this.position.x += moveX;
         this.position.y += moveY;
         // 判断左边界
@@ -60,6 +65,8 @@ Player.prototype.move = function (angle, speed) {
         this.position.y = this.position.y + this.radius > Screen.height ? Screen.height - this.radius : this.position.y;
         this.timestamp = timestamp;
     }
+    this.angle = angle;
+    this.speed = speed;
     // 同步到缓存
     PlayerService.savePlayer(this);
 }

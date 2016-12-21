@@ -35,7 +35,7 @@ RoomService.saveRoom = function (rid, cb) {
             utils.invokeCallback(cb, err.message, null);
         }
         rooms = rooms == null ? [] : rooms;
-        if (!rooms.contains(rid)) {
+        if (rooms.indexOf(rid) == -1) {
             rooms.push(rid);
         }
         mem.set(roomKey(), rooms);

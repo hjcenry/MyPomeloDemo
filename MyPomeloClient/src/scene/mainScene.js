@@ -19,10 +19,6 @@ var MainSceneLayer = cc.Layer.extend({
         bgImg.setScale(Const.Screen.width / bgImg.width, Const.Screen.height / bgImg.height);
         this.bg.addChild(bgImg, 1);
         this.addChild(this.bg);
-        cc.log("screen w:", Const.Screen.width, ",h:", Const.Screen.height);
-        cc.log("winsize w:", cc.winSize.width, ",h:", cc.winSize.height);
-        cc.log("bg w:", this.bg.width, ",h:", this.bg.height);
-        cc.log("bg bounding w:", bgImg.getBoundingBox().width, ",h:", bgImg.getBoundingBox().height);
         // 房间号
         var roomLabel = new cc.LabelTTF("房间号：" + this.rid, "微软雅黑", 30);
         roomLabel.setPosition(roomLabel.width / 2 + 20, this.size.height - roomLabel.height / 2 - 20);
@@ -38,6 +34,7 @@ var MainSceneLayer = cc.Layer.extend({
                     type: Const.Entity.player
                 });
                 player.setBg(this.bg);
+                player.setBgPosition(users[username].position.x, users[username].position.y);
                 this.player = player;
             } else {
                 player = new Player({
@@ -46,7 +43,6 @@ var MainSceneLayer = cc.Layer.extend({
                     type: Const.Entity.other
                 });
             }
-            player.setBgPosition(users[username].position.x, users[username].position.y);
             this.bg.addChild(player, 2);
         }
         // 虚拟摇杆
@@ -59,9 +55,11 @@ var MainSceneLayer = cc.Layer.extend({
         this.addChild(controller, 10, 101);
         pomelo.on(Event.move, function (data) {
             // 其他玩家的移动方法
-            var userTag = self.userTags[data.uid];
+            var userTag = self.userTags[data.id];
             var user = self.getChildByTag(userTag);
-            user.setPosition(data.x, data.y);
+            user.setSpeed(data.speed);
+            user.setAngle(data.angle);
+            user.setPosition(data.position.x, data.position.y);
         });
         pomelo.on(Event.enter, function (data) {
             // 其他玩家进入的方法
@@ -71,7 +69,7 @@ var MainSceneLayer = cc.Layer.extend({
                     radius: data.radius,
                     type: Const.Entity.other
                 });
-                player.setBgPosition(data.x, data.y);
+                player.setPosition(data.x, data.y);
                 self.bg.addChild(player);
             }
         });
@@ -116,19 +114,3 @@ var MainScene = cc.Scene.extend({
         this.addChild(layer);
     }
 });
-
-var pomeloChat = function () {
-    var pomelo = window.pomelo;
-    var host = "127.0.0.1";
-    var port = "3010";
-    pomelo.init({
-        host: host,
-        port: port,
-        log: true
-    }, function () {
-        pomelo.request("connector.entryHandler.entry", "hello pomelo", function (data) {
-            alert(data.msg);
-        });
-    });
-}
-

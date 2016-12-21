@@ -24,6 +24,7 @@ module.exports = {
     },
 
     Tick: {
-        updateMainScene: 1
+        updateMainScene: 1,
+        generateBean: 2
     }
 };

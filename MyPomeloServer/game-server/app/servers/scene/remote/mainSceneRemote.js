@@ -33,6 +33,7 @@ MainSceneRemote.prototype.add = function (uid, sid, name, flag, cb) {
         id: username,
         rid: name
     });
+    player.init();
     // 添加玩家信息
     var self = this;
     PlayerService.savePlayer(player, function (err, data) {

@@ -20,8 +20,14 @@ var Player = cc.Sprite.extend({
         return true;
     },
     setSpeed: function (speed) {
-        // 速度计算公式（随便写的，大致速度差不多就行。。。）
-        this.speed = Const.Screen.width / 10 * speed / (Const.Screen.width / 10);
+        if (this.type == Const.Entity.player) {
+            // 速度计算公式（随便写的，大致速度差不多就行。。。）
+            this.speed = Const.Screen.width / 10 * speed / (Const.Screen.width / 10);
+            // 通知服务端移动操作
+            this.notifyServerMove(this.angle, this.speed);
+        } else {
+            this.speed = speed;
+        }
     },
     getSpeed: function () {
         return this.speed * (Const.Screen.width / 10) / (Const.Screen.width / 10)
@@ -29,6 +35,8 @@ var Player = cc.Sprite.extend({
     setAngle: function (angle) {
         // 计算角度
         this.angle = angle;
+        // 通知服务端移动操作
+        this.notifyServerMove(this.angle, this.speed);
     },
     getAngle: function () {
         return this.angle;
@@ -57,6 +65,13 @@ var Player = cc.Sprite.extend({
     },
     getWinSizeY: function () {
         return this.y + this.bg.y;
+    },
+    notifyServerMove: function (angle, speed) {
+        this.pomelo.notify(Route.move, {angle: angle, speed: speed}, function (err) {
+            if (!!err) {
+                cc.log("move update err:" + err)
+            }
+        });
     },
     moveX: function (moveX) {
         if (this.type == Const.Entity.player) {
@@ -101,19 +116,6 @@ var Player = cc.Sprite.extend({
         var startY = this.y;
         this.moveX(moveX);
         this.moveY(moveY);
-        if (this.type == Const.Entity.player) {
-            // 背景图或小球发生位移，则发送服务端通知
-            var isMoveX = startX == this.x ? true : false;
-            var isMoveY = startY == this.y ? true : false;
-            if (isMoveX || isMoveY) {
-                // 通知服务端移动操作
-                this.pomelo.notify(Route.move, {angle: this.angle, speed: this.speed}, function (err) {
-                    if (!!err) {
-                        cc.log("move update err:" + err)
-                    }
-                });
-            }
-        }
     },
     onMove: function (player) {
         this.angle = player.angle;
