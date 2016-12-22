@@ -37,7 +37,8 @@ handler.move = function (msg, session, next) {
     PlayerService.getPlayerByName(username, rid, function (err, data) {
         if (data != null) {
             var player = data;
-            player.move(msg.angle, msg.speed);
+            logger.info(JSON.stringify(msg));
+            player.move(msg.angle, msg.speed, msg.frames);
             // 推送玩家信息给当前房间其他玩家
             channel.pushMessage(Event.move, {
                 uid: player.id,

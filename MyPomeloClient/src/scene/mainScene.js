@@ -56,8 +56,8 @@ var MainSceneLayer = cc.Layer.extend({
         controller.setEnable(true);
         this.addChild(controller, 10, 101);
         pomelo.on(Event.move, function (data) {
-            cc.log("============");
-            cc.log(data);
+            // cc.log("============");
+            // cc.log(data);
             // 其他玩家的移动方法
             if (data.uid != Userinfo.uid) {
                 var userTag = self.userTags[data.uid];

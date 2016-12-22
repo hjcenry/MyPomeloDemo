@@ -46,13 +46,15 @@ Player.prototype.init = function () {
  * @param moveX
  * @param moveY
  */
-Player.prototype.move = function (angle, speed) {
+Player.prototype.move = function (angle, speed, frames) {
     // 计算之前角度与速度的位移
     var timestamp = new Date().getTime();
-    var frame = Math.round((timestamp - this.timestamp) / (1000 / 60));// 经过的帧
-    if (frame > 0) {
-        var moveX = Math.cos(this.angle * (Math.PI / 180)) * this.speed * frame;
-        var moveY = Math.sin(this.angle * (Math.PI / 180)) * this.speed * frame;
+    // var frame = Math.floor((timestamp - this.timestamp) / (1000 / 60));// 经过的帧，改为客户端传值更加准确
+    if (frames > 0) {
+        var moveX = Math.cos(this.angle * (Math.PI / 180)) * this.speed * frames;
+        var moveY = Math.sin(this.angle * (Math.PI / 180)) * this.speed * frames;
+        var startX = this.position.x;
+        var startY = this.position.y;
         this.position.x += moveX;
         this.position.y += moveY;
         // 判断左边界
@@ -64,6 +66,9 @@ Player.prototype.move = function (angle, speed) {
         // 判断上边界
         this.position.y = this.position.y + this.radius > Screen.height ? Screen.height - this.radius : this.position.y;
         this.timestamp = timestamp;
+        logger.info(this.id + "移动距离:move x:", (this.position.x - startX), ",y:", (this.position.y - startY), "");
+        logger.info(this.id + "当前位置:pos  x:", this.position.x, ",y:", this.position.y, "");
+        logger.info(this.id + "移动帧数:", frames);
     }
     this.angle = angle;
     this.speed = speed;

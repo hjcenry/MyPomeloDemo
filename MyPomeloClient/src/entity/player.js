@@ -6,6 +6,9 @@ var Player = cc.Sprite.extend({
     type: "",
     bg: null,
     pomelo: Global.pomelo,
+    testX: 0,
+    testY: 0,
+    frames: 0,
     ctor: function (opt) {
         this._super();
         this.id = opt.id;
@@ -18,6 +21,9 @@ var Player = cc.Sprite.extend({
         // 小球坐标
         this.x = opt.position.x;
         this.y = opt.position.y;
+        this.testX = this.x;
+        this.testY = this.y;
+        this.frames = 0;
         // 定时更新
         this.scheduleUpdate();
         return true;
@@ -67,12 +73,20 @@ var Player = cc.Sprite.extend({
         return this.y + this.bg.y;
     },
     notifyServerMove: function (angle, speed) {
-        cc.log("notify server move angle[", angle, "],speed[", speed, "]");
-        this.pomelo.notify(Route.move, {angle: angle, speed: speed}, function (err) {
-            if (err != null) {
-                cc.log("move update err:" + err)
-            }
-        });
+        if (this.type == Const.Entity.player) {
+            cc.log("notify server move angle[", angle, "],speed[", speed, "]");
+            cc.log("移动距离 move x:", (this.x - this.testX), ",y:", (this.y - this.testY), "");
+            cc.log("当前位置 pos x:", this.x, ",y:", this.y, "");
+            cc.log("移动帧数 :", this.frames, "");
+            this.testX = this.x;
+            this.testY = this.y;
+            this.pomelo.notify(Route.move, {angle: angle, speed: speed, frames: this.frames}, function (err) {
+                if (err != null) {
+                    cc.log("move update err:" + err);
+                }
+            });
+            this.frames = 0;
+        }
     },
     moveX: function (moveX) {
         if (this.type == Const.Entity.player) {
@@ -111,10 +125,9 @@ var Player = cc.Sprite.extend({
         this.y = calMoveY;
     },
     update: function (dt) {
+        this.frames++;
         var moveX = Math.cos(this.angle * (Math.PI / 180)) * this.speed;
         var moveY = Math.sin(this.angle * (Math.PI / 180)) * this.speed;
-        var startX = this.x;
-        var startY = this.y;
         this.moveX(moveX);
         this.moveY(moveY);
     },
