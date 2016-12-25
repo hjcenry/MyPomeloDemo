@@ -32,7 +32,8 @@ var MainSceneLayer = cc.Layer.extend({
                     id: username,
                     radius: users[username].radius,
                     type: Const.Entity.player,
-                    position: users[username].position
+                    position: users[username].position,
+                    img: users[username].img
                 });
                 player.setBg(this.bg);
                 player.setBgPosition(users[username].position.x, users[username].position.y);
@@ -42,7 +43,8 @@ var MainSceneLayer = cc.Layer.extend({
                     id: username,
                     radius: users[username].radius,
                     type: Const.Entity.other,
-                    position: users[username].position
+                    position: users[username].position,
+                    img: users[username].img
                 });
             }
             this.bg.addChild(player, 2, this.userTags[username]);
@@ -70,12 +72,14 @@ var MainSceneLayer = cc.Layer.extend({
         });
         pomelo.on(Event.enter, function (data) {
             cc.log(data.uid + " enter");
+            cc.log(data);
+            console.dir(data);
             // 其他玩家进入的方法
             if (data.uid != Userinfo.uid) {
                 self.userTags[data.uid] = self.createTag();
-                cc.log(self.userTags[data.uid]);
                 var player = new Player({
                     id: data.uid,
+                    img: data.img,
                     radius: data.radius,
                     type: Const.Entity.other,
                     position: {x: data.x, y: data.y}

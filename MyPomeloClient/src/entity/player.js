@@ -4,26 +4,25 @@ var Player = cc.Sprite.extend({
     speed: 0,
     angle: 0,
     type: "",
+    img: 0,
     bg: null,
     pomelo: Global.pomelo,
-    testX: 0,
-    testY: 0,
-    frames: 0,
     ctor: function (opt) {
         this._super();
         this.id = opt.id;
         this.type = opt.type;
+        this.img = opt.img;
         this.radius = !!opt.radius ? opt.radius : this.radius;
         this.speed = !!opt.speed ? opt.speed : this.speed;
-        var ballImgRandom = Math.ceil(Math.random() * 4);
-        this.setTexture("res/ball" + ballImgRandom + ".png");
+        this.setTexture("res/ball" + this.img + ".png");
         this.setScale(this.radius * 2 / this.width, this.radius * 2 / this.height);
         // 小球坐标
         this.x = opt.position.x;
         this.y = opt.position.y;
-        this.testX = this.x;
-        this.testY = this.y;
-        this.frames = 0;
+        //  玩家id
+        var nameLabel = new cc.LabelTTF(this.id, "微软雅黑", 20);
+        nameLabel.setPosition(this.radius, this.radius * 2 + 50);
+        this.addChild(nameLabel);
         // 定时更新
         this.scheduleUpdate();
         return true;
@@ -75,17 +74,15 @@ var Player = cc.Sprite.extend({
     notifyServerMove: function (angle, speed) {
         if (this.type == Const.Entity.player) {
             cc.log("notify server move angle[", angle, "],speed[", speed, "]");
-            cc.log("移动距离 move x:", (this.x - this.testX), ",y:", (this.y - this.testY), "");
-            cc.log("当前位置 pos x:", this.x, ",y:", this.y, "");
-            cc.log("移动帧数 :", this.frames, "");
-            this.testX = this.x;
-            this.testY = this.y;
-            this.pomelo.notify(Route.move, {angle: angle, speed: speed, frames: this.frames}, function (err) {
+            this.pomelo.notify(Route.move, {
+                angle: angle,
+                speed: speed,
+                position: {x: this.x, y: this.y}
+            }, function (err) {
                 if (err != null) {
                     cc.log("move update err:" + err);
                 }
             });
-            this.frames = 0;
         }
     },
     moveX: function (moveX) {
@@ -125,7 +122,6 @@ var Player = cc.Sprite.extend({
         this.y = calMoveY;
     },
     update: function (dt) {
-        this.frames++;
         var moveX = Math.cos(this.angle * (Math.PI / 180)) * this.speed;
         var moveY = Math.sin(this.angle * (Math.PI / 180)) * this.speed;
         this.moveX(moveX);

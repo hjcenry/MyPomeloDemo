@@ -19,7 +19,8 @@ var handler = Handler.prototype;
 handler.enter = function (msg, session, next) {
     var self = this;
     var rid = msg.rid;
-    var uid = msg.username + '*' + rid
+    var uid = msg.username + '*' + rid;
+    var img = msg.img;
     var sessionService = self.app.get('sessionService');
 
     //duplicate log in
@@ -41,7 +42,7 @@ handler.enter = function (msg, session, next) {
     session.on('closed', onUserLeave.bind(null, self.app));
 
     //put user into channel
-    self.app.rpc.scene.mainSceneRemote.add(session, uid, self.app.get('serverId'), rid, true, function (users) {
+    self.app.rpc.scene.mainSceneRemote.add(session, uid, self.app.get('serverId'), rid, img, true, function (users) {
         next(null, {
             rid: rid,
             users: users

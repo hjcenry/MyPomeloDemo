@@ -15,6 +15,7 @@ var PlayerService = require('../service/playerService');
 var Player = function (opts) {
     this.id = opts.id;
     this.rid = opts.rid;
+    this.img = opts.img;
     this.type = opts.type;
     this.radius = opts.radius;
     this.speed = opts.speed;
@@ -46,32 +47,11 @@ Player.prototype.init = function () {
  * @param moveX
  * @param moveY
  */
-Player.prototype.move = function (angle, speed, frames) {
-    // 计算之前角度与速度的位移
-    var timestamp = new Date().getTime();
-    // var frame = Math.floor((timestamp - this.timestamp) / (1000 / 60));// 经过的帧，改为客户端传值更加准确
-    if (frames > 0) {
-        var moveX = Math.cos(this.angle * (Math.PI / 180)) * this.speed * frames;
-        var moveY = Math.sin(this.angle * (Math.PI / 180)) * this.speed * frames;
-        var startX = this.position.x;
-        var startY = this.position.y;
-        this.position.x += moveX;
-        this.position.y += moveY;
-        // 判断左边界
-        this.position.x = this.position.x - this.radius < 0 ? this.radius : this.position.x;
-        // 判断右边界
-        this.position.x = this.position.x + this.radius > Screen.width ? Screen.width - this.radius : this.position.x;
-        // 判断下边界
-        this.position.y = this.position.y - this.radius < 0 ? this.radius : this.position.y;
-        // 判断上边界
-        this.position.y = this.position.y + this.radius > Screen.height ? Screen.height - this.radius : this.position.y;
-        this.timestamp = timestamp;
-        logger.info(this.id + "移动距离:move x:", (this.position.x - startX), ",y:", (this.position.y - startY), "");
-        logger.info(this.id + "当前位置:pos  x:", this.position.x, ",y:", this.position.y, "");
-        logger.info(this.id + "移动帧数:", frames);
-    }
+Player.prototype.move = function (angle, speed, position) {
     this.angle = angle;
     this.speed = speed;
+    this.position.x = position.x;
+    this.position.y = position.y;
     // 同步到缓存
     PlayerService.savePlayer(this);
 }

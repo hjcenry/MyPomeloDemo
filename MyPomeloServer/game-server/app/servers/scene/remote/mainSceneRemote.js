@@ -22,7 +22,7 @@ var MainSceneRemote = function (app) {
  * @param flag
  * @param cb
  */
-MainSceneRemote.prototype.add = function (uid, sid, name, flag, cb) {
+MainSceneRemote.prototype.add = function (uid, sid, name, img, flag, cb) {
     var channel = this.channelService.getChannel(name, flag);
     if (flag) {
         RoomService.saveRoom(name);
@@ -31,7 +31,8 @@ MainSceneRemote.prototype.add = function (uid, sid, name, flag, cb) {
     // 创建玩家
     var player = new Player({
         id: username,
-        rid: name
+        rid: name,
+        img: img
     });
     player.init();
     // 添加玩家信息
@@ -44,6 +45,7 @@ MainSceneRemote.prototype.add = function (uid, sid, name, flag, cb) {
         self.get(name, cb);
         channel.pushMessage(Event.enter, {
             uid: data.id,
+            img: data.img,
             radius: data.radius,
             x: data.position.x,
             y: data.position.y

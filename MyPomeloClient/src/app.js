@@ -91,7 +91,8 @@ var HelloWorldLayer = cc.Layer.extend({
                 var route = "connector.entryHandler.enter";
                 pomelo.request(route, {
                     username: userName,
-                    rid: room
+                    rid: room,
+                    img: Math.ceil(Math.random() * 4),// 随机头像1-3
                 }, function (data) {
                     if (data.error) {
                         self.showError(data.error);
